@@ -1,6 +1,7 @@
 
 // JSVector -- a Javascript 2D vector class
-//  Advance d Animatiopn
+//  Advanced Animatiopn
+//  2022-23
 
 function JSVector(x = 0,y = 0){
         this.x = x;
