@@ -10,8 +10,10 @@ class Food extends Entity {
         this.wHeight = wrld.dims.height;
         this.statBlock = {//  properties 
             health: 100,
-            nurishment: 100,
+            nourishment: 100,
             lifeSpan:30000,
+            opacity:1.0,
+            foodPts:100
         };
     }
     //  methods
@@ -48,7 +50,10 @@ class Food extends Entity {
         let colors = [
             "#25AA34",
             "#18CC2e",
-            "#38FF25"
+            "#389925",
+            "#11AA99",
+            "#99CC00",
+            "#11FF65"
         ];
         let index = Math.floor(Math.random() * colors.length);
         return colors[index];

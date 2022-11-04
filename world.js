@@ -33,6 +33,7 @@ class World {
     for (let i = 0; i < this.entities.length; i++) {
       this.entities[i].run();
     }
+
     this.ctxMain.restore();
     // translate cnvMain according to the location of the canvas in the world
     this.ctxMain.save();
@@ -47,6 +48,8 @@ class World {
   }
   //Load mover array
   loadEntities(numEntities, ctx1, w, h) {
+
+    //  generic entities
     for (let i = 0; i < numEntities; i++) {
       let diam = 3;
       let x = Math.random() * (this.dims.width - 2 * diam) + diam - this.dims.width / 2;
@@ -57,31 +60,30 @@ class World {
       let vel = new JSVector(dx, dy);
       this.entities.push(new Entity(loc, vel, diam, this));
     }
-
-
+    //  generic creatures
     for (let i = 0; i < 500; i++) {
       let x = Math.random() * this.dims.width - this.dims.width / 2;
       let y = Math.random() * this.dims.height - this.dims.height / 2;
       let loc = new JSVector(x, y);
       this.entities.push(
-      new Creature(loc,
-                  new JSVector(Math.random()*4-2, Math.random()*4-2),
-                  6,
-                  this)
+        new Creature(loc,
+          new JSVector(Math.random() * 4 - 2, Math.random() * 4 - 2),
+          6,
+          this)
       );
     }
-
+    //  generic food
     for (let i = 0; i < 500; i++) {
-      let x = Math.random() * this.dims.width - this.dims.width / 2;
-      let y = Math.random() * this.dims.height - this.dims.height / 2;
+      let x = Math.random() * (this.dims.width-20) - (this.dims.width / 2 - 10);
+      let y = Math.random() * (this.dims.height-20) - (this.dims.height / 2 - 10);
       let loc = new JSVector(x, y);
-      this.entities.push(new Food(loc,
-        new JSVector(0, 0),
-        6,
-        this)
+      this.entities.push(
+          new Food(loc,
+          new JSVector(0, 0),
+          6,
+          this)
       );
     }
-
   }
 }//++++++++++++++++++++++++++++++  end world constructor
 
