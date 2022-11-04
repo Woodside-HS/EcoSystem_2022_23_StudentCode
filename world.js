@@ -4,7 +4,7 @@ class World {
   constructor() {
     this.cnvMain = document.getElementById('cnv1');
     this.ctxMain = this.cnvMain.getContext('2d');
-    this.cnvMainLoc = new JSVector(0, 0);
+    this.cnvMainLoc = new JSVector(0, 0);   
     this.dims = {
       top: -1500,
       left: -2000,
@@ -15,6 +15,11 @@ class World {
     }
     this.entities = [];
     this.loadEntities(900, this.ctxMain, this.dims.width, this.dims.height);
+    this.entities.push(new Creature(new JSVector(0,0),
+    new JSVector(1,1),
+    10,
+    this)
+    );
   }
 
   run() {
@@ -50,7 +55,7 @@ class World {
       let dx = Math.random() * 2 - 1;
       let dy = Math.random() * 2 - 1;
       let vel = new JSVector(dx, dy);
-      this.entities.push(new Entity(loc, vel, diam, ctx1, w, h));
+      this.entities.push(new Entity(loc, vel, diam, this));
     }
   }
 }//++++++++++++++++++++++++++++++  end world constructor

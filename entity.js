@@ -1,18 +1,18 @@
 class Entity {
-
-  constructor(loc, vel, d, ctx1, worldWidth, worldHeight) {
+  constructor(loc, vel, sz, wrld) {
     //mover properties
     this.loc = loc;
     this.vel = vel;
     this.acc = new JSVector(0, 0);
     this.clr = this.getRandomColor();
-    this.diam = d;
-    this.ctx1 = ctx1;
-    this.wWidth = worldWidth;
-    this.wHeight = worldHeight;
-  }//++++++++++++++++++++++++++++++++ end mover constructor
+    this.size = sz;
+    this.maxSpeed = 1;
+    this.ctx = wrld.ctxMain;
+    this.wWidth = wrld.dims.width;
+    this.wHeight = wrld.dims.height;
+  }//++++++++++++++++++++++++++++++++ end Entity constructor
 
-  //++++++++++++++++++++++++++++++++ mover methods
+  //++++++++++++++++++++++++++++++++ Entity methods
   run() {
     this.update();
     this.checkEdges();
@@ -21,10 +21,9 @@ class Entity {
 
   update() {
     this.vel.add(this.acc);
-    this.vel.limit(3);
+    this.vel.limit(this.maxSpeed);
     this.loc.add(this.vel);
   }
-
 
   checkEdges() {
     if (this.loc.x >= world.dims.width / 2 || this.loc.x <= -world.dims.width / 2) {
@@ -35,31 +34,19 @@ class Entity {
     }
   }
 
-
   render() {
     //  render balls in world
-    let ctx1 = this.ctx1;
-    ctx1.beginPath();
-    ctx1.fillStyle = this.clr;
-    ctx1.arc(this.loc.x, this.loc.y, this.diam, 0, 2 * Math.PI, false);
-    ctx1.fill();
-    //  render balls in mini map
-
+    let ctx = this.ctx;
+    ctx.beginPath();
+    ctx.fillStyle = this.clr;
+    ctx.arc(this.loc.x, this.loc.y, this.size, 0, 2 * Math.PI, false);
+    ctx.fill();
   }
 
   getRandomColor() {
     //  List of hex color values for movers
     let colors = [
-      "#7102AB",
-      "#ab0256",
-      "#0285ab",
-      "#02ab1a",
-      "#ab5302",
-      "#773e26",
-      "#ab0256",
-      "#257874",
-      "#78254e",
-      "#787725"
+      "#FFFFFF",
     ];
     let index = Math.floor(Math.random() * colors.length);
     return colors[index];
