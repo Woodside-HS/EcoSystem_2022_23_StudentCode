@@ -21,6 +21,7 @@ class Creature extends Entity {
          maxSpeed: 1,
          scentValue: 100,
          sightValue: 100,
+         weight:10,
       };
    }//++++++++++++++++++++++++++++++++ end mover constructor
 
