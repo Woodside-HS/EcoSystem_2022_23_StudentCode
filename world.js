@@ -57,6 +57,24 @@ class World {
       let vel = new JSVector(dx, dy);
       this.entities.push(new Entity(loc, vel, diam, this));
     }
+
+    this.entities.push(new Creature(new JSVector(0,0),
+    new JSVector(1,1),
+    10,
+    this)
+    );
+
+    for( let i = 0; i < 500; i++){
+      let x = Math.random()*this.dims.width - this.dims.width/2;
+      let y = Math.random()*this.dims.height - this.dims.width/2;
+      let loc = new JSVector(x, y);
+      this.entities.push( new Food(loc,
+                          new JSVector(0,0),
+                          6,
+                          this)
+      );
+    }
+   
   }
 }//++++++++++++++++++++++++++++++  end world constructor
 
