@@ -22,9 +22,9 @@ class Creature extends Entity {
          scentValue: 100,
          sightValue: 100,
       };
-   }//++++++++++++++++++++++++++++++++ end mover constructor
+   }//++++++++++++++++++++++++++++++++ end creature constructor
 
-   //++++++++++++++++++++++++++++++++ mover methods
+   //++++++++++++++++++++++++++++++++ creature methods
    run() {
       this.update();
       this.checkEdges();
