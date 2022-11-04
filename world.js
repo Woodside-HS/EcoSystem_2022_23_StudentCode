@@ -4,7 +4,7 @@ class World {
   constructor() {
     this.cnvMain = document.getElementById('cnv1');
     this.ctxMain = this.cnvMain.getContext('2d');
-    this.cnvMainLoc = new JSVector(0, 0);   
+    this.cnvMainLoc = new JSVector(0, 0);
     this.dims = {
       top: -1500,
       left: -2000,
@@ -15,10 +15,10 @@ class World {
     }
     this.entities = [];
     this.loadEntities(900, this.ctxMain, this.dims.width, this.dims.height);
-    this.entities.push(new Creature(new JSVector(0,0),
-    new JSVector(1,1),
-    10,
-    this)
+    this.entities.push(new Creature(new JSVector(0, 0),
+      new JSVector(1, 1),
+      10,
+      this)
     );
   }
 
@@ -48,7 +48,7 @@ class World {
   //Load mover array
   loadEntities(numEntities, ctx1, w, h) {
     for (let i = 0; i < numEntities; i++) {
-      let diam = 10;
+      let diam = 3;
       let x = Math.random() * (this.dims.width - 2 * diam) + diam - this.dims.width / 2;
       let y = Math.random() * (this.dims.height - 2 * diam) + diam - this.dims.height / 2;
       let loc = new JSVector(x, y);
@@ -58,23 +58,30 @@ class World {
       this.entities.push(new Entity(loc, vel, diam, this));
     }
 
-    this.entities.push(new Creature(new JSVector(0,0),
-    new JSVector(1,1),
-    10,
-    this)
-    );
 
-    for( let i = 0; i < 500; i++){
-      let x = Math.random()*this.dims.width - this.dims.width/2;
-      let y = Math.random()*this.dims.height - this.dims.width/2;
+    for (let i = 0; i < 500; i++) {
+      let x = Math.random() * this.dims.width - this.dims.width / 2;
+      let y = Math.random() * this.dims.height - this.dims.height / 2;
       let loc = new JSVector(x, y);
-      this.entities.push( new Food(loc,
-                          new JSVector(0,0),
-                          6,
-                          this)
+      this.entities.push(
+      new Creature(loc,
+                  new JSVector(Math.random()*4-2, Math.random()*4-2),
+                  6,
+                  this)
       );
     }
-   
+
+    for (let i = 0; i < 500; i++) {
+      let x = Math.random() * this.dims.width - this.dims.width / 2;
+      let y = Math.random() * this.dims.height - this.dims.height / 2;
+      let loc = new JSVector(x, y);
+      this.entities.push(new Food(loc,
+        new JSVector(0, 0),
+        6,
+        this)
+      );
+    }
+
   }
 }//++++++++++++++++++++++++++++++  end world constructor
 

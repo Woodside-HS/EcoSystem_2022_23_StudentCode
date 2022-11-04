@@ -47,8 +47,8 @@ class Food extends Entity {
         //  List of hex color values for movers
         let colors = [
             "#25AA34",
-            "#58CC2e",
-            "#3S8FF25"
+            "#18CC2e",
+            "#38FF25"
         ];
         let index = Math.floor(Math.random() * colors.length);
         return colors[index];
