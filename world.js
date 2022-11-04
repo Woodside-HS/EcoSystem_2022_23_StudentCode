@@ -65,12 +65,12 @@ class World {
     );
 
     for( let i = 0; i < 500; i++){
-      let x = Math.random()*this.dims.width;
-      let y = Math.random()*this.dims.height;
+      let x = Math.random()*this.dims.width - this.dims.width/2;
+      let y = Math.random()*this.dims.height - this.dims.width/2;
       let loc = new JSVector(x, y);
       this.entities.push( new Food(loc,
                           new JSVector(0,0),
-                          3,
+                          6,
                           this)
       );
     }

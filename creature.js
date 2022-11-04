@@ -15,7 +15,11 @@ class Creature extends Entity {
          health: 100,
          isDead: false,
          nurishment: 100,
+         lifeSpan:30000,
+         age:0,
+         mate:false,
          pregnant: false,
+         numOffspring:1,
          predRank: 5, //  predatory rank 0-10
          herbavor: false,
          maxSpeed: 1,
