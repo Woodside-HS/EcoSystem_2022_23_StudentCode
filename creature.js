@@ -11,11 +11,11 @@ class Creature extends Entity {
       this.ctx = wrld.ctxMain;
       this.wWidth = wrld.dims.width;
       this.wHeight = wrld.dims.height;
-      this.statBlock = {//  properties 
+      this.statBlock = {//  status block 
          health: 100,
          isDead: false,
          nourishment: 100,
-         lifeSpan:30000,
+         lifeSpan:30000,//  miliseconds
          age:0,
          mate:false,
          pregnant: false,

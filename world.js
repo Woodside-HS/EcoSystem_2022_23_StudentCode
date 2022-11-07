@@ -84,7 +84,9 @@ class World {
           this)
       );
     }
-  }
+  }//++++++++++++++++++++++++++++  load entities
+
+
 }//++++++++++++++++++++++++++++++  end world constructor
 
 
