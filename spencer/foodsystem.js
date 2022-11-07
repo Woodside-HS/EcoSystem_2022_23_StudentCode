@@ -1,6 +1,4 @@
-//food particle
-
-class Food1 extends Entity {
+class FoodSystem extends Entity {
     // properties
     constructor(loc, vel, sz, wrld) {
         super(loc, vel, sz, wrld)
