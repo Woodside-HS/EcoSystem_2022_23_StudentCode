@@ -2,20 +2,26 @@ class Food6 extends Entity {
     // properties
     constructor(loc, vel, sz, wrld) {
         super(loc, vel, sz, wrld)
-        
-    
+        this.loc = loc;
+        this.vel = vel;
+        this.rad = sz;
+        this.ctx = wrld.ctxMain;
+        this.with = wrld.dims.width;
+        this.hight = wrld.dims.height;
+        this.clr = getRandomColor();
+        this.yummy = [];
     }
     //  methods
     run() {
         this.update();
         this.render();
     }
-
     update() {
+
     }
 
     render() {
-       
+       let ctx = this.ctx;
     }
 
     getRandomColor() {
