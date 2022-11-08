@@ -1,10 +1,19 @@
 class Food3 extends Entity {
-  //test change
   // properties
   constructor(loc, vel, sz, wrld) {
     super(loc, vel, sz, wrld);
+
+    this.particle = [];
+    this.loadParticles(5);
   }
   //  methods
+  loadParticles(n) {
+    // loads particles
+    for (let i = 0; i < n; i++) {
+      this.particle[i] = new Particle(100, 500);
+    }
+  }
+
   run() {
     this.update();
     this.render();
@@ -12,7 +21,11 @@ class Food3 extends Entity {
 
   update() {}
 
-  render() {}
+  render() {
+    for (let i = 0; i < this.particle.length; i++) {
+      this.particle[i].run();
+    }
+  }
 
   getRandomColor() {
     //  List of hex color values for movers
