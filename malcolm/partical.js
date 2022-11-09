@@ -1,30 +1,26 @@
 class Particle {
-  constructor(loc, sz, wrld) {
+  constructor(loc, wrld) {
     // this.loc = loc;
-    let x = Math.random() * 600 - 100;
-    let y = Math.random() * 600 - 100;
+    let x = Math.random() * (800 - 0) + -0;
+    let y = Math.random() * (600 - 0) + -0;
     this.loc = new JSVector(x, y);
     let vX = Math.random() * (1 - -1) + -1;
     let vY = Math.random() * (1 - -1) + -1;
     this.vel = new JSVector(vX, vY);
 
-    this.size = sz;
-    this.maxSize = sz;
-    console.log(sz);
-    // this.size = 20;
-    // this.maxSize = 20;
+    this.size = 1;
+    this.maxSize = 20;
     this.ctx = wrld;
-    this.hp = 100;
+    this.hp = Math.floor(Math.random() * (100 - 50) + 50);
     this.count = 0;
     this.isDead = false;
-    this.lifespan = Math.random() * (10 - 10) + 10;
+    this.lifespan = Math.random() * (100 - 10) + 10;
   }
 
   run() {
     this.render();
     this.update();
     this.healthPoints();
-    this.makeMore();
   }
   render() {
     let ctxMain = world.ctxMain;
@@ -56,12 +52,6 @@ class Particle {
     if (++this.count >= this.lifespan) {
       this.hp--;
       this.count = 0;
-    }
-  }
-
-  makeMore() {
-    if (this.hp < 50) {
-      food3.particle.push(new Particle(this.loc, this.size, this.ctx));
     }
   }
 }

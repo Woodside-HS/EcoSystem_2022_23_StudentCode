@@ -2,22 +2,23 @@ class Food3 {
   // properties
   constructor(loc, vel, sz, wrld) {
     this.particles = [];
-    this.loadParticles(5);
     this.loc = loc;
     this.vel = vel;
-    this.size = sz;
+    // this.size = sz;
     this.ctx = wrld.ctxMain;
+    this.loadParticles(5);
   }
   //  methods
   loadParticles(n) {
     // loads particles
     for (let i = 0; i < n; i++) {
-      this.addParticle();
+      this.addParticles();
     }
   }
 
-  addParticle(){
-    this.particles.push()
+  addParticles() {
+    this.particles.push(new Particle(this.loc, this.ctx));
+    console.log(this.particles.length);
   }
 
   run() {
@@ -26,16 +27,26 @@ class Food3 {
   }
 
   update() {
-    for (let i = 0; i < this.particle.length; i++) {
-      if (this.particle[i].isDead === true) {
-        this.particle.splice(i, 1);
+    for (let i = 0; i < this.particles.length; i++) {
+      if (
+        this.particles[i].hp == 50 &&
+        this.particles.length >= 5 &&
+        this.particles.length <= 10
+      ) {
+        this.particles[i].hp--;
+        this.addParticles();
+      }
+    }
+    for (let i = 0; i < this.particles.length; i++) {
+      if (this.particles[i].isDead === true) {
+        this.particles.splice(i, 1);
       }
     }
   }
 
   render() {
-    for (let i = 0; i < this.particle.length; i++) {
-      this.particle[i].run();
+    for (let i = 0; i < this.particles.length; i++) {
+      this.particles[i].run();
     }
   }
 
