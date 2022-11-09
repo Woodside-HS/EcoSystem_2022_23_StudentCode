@@ -1,16 +1,17 @@
-class Food3 extends Entity {
+class Food3 {
   // properties
   constructor(loc, vel, sz, wrld) {
-    super(loc, vel, sz, wrld);
-
     this.particle = [];
-    this.loadParticles(5);
+    this.loadParticles(5, loc, sz, wrld);
+    // this.loc = loc;
+    // this.size = sz;
+    // this.ctx = wrld;
   }
   //  methods
-  loadParticles(n) {
+  loadParticles(n, loc, sz, wrld) {
     // loads particles
     for (let i = 0; i < n; i++) {
-      this.particle[i] = new Particle(100, 500);
+      this.particle[i] = new Particle(loc, sz, wrld);
     }
   }
 
