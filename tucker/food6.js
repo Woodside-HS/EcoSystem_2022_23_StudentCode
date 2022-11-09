@@ -17,6 +17,7 @@ class Food6 extends Entity {
         this.render();
     }
     update() {
+        this.yummy.push(this.loc, new JSVector(Math.random()*4-2,Math.random()*4-2), thsi.getRandomColor(), 5, Math.random()*1000+1000)
 
     }
 
