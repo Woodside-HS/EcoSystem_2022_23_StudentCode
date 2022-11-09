@@ -20,7 +20,6 @@ class World {
       10,
       this)
     );
-    this.entities.push(new FoodSystem(new JSVector(50, 50), new JSVector(0, 0), 5, this, 30));
   }
 
   run() {
@@ -85,6 +84,14 @@ class World {
           this)
       );
     }
+
+    // food1 Spencer
+    for(let i = 0; i<1; i++){
+      this.entities.push(new FoodSystem(new JSVector(50, 50), new JSVector(0, 0), 5, this, 30));
+    }
+
+
+
   }//++++++++++++++++++++++++++++  load entities
 
 
