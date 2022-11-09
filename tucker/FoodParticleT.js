@@ -11,17 +11,12 @@ class FoodParticleT {
         this.update();
         this.render();
         this.lifeSpan--;
-        if(lifeSpan <= 0){
+        if(this.lifeSpan <= 0){
             this.isDead = true;
         }
     }
     update(){
         this.loc.add(this.vel);
-        if(this.vel.getMagnitude()>0){
-            this.vel.setMagnitude(this.vel.getMagnitude()-1);
-        } else if(this.vel.getManitude()<0){
-            this.vel.setMagnitude(0)
-        }
     }
     render(){
         let ctx = world.ctxMain;
