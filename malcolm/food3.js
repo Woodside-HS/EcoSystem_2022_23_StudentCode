@@ -20,7 +20,13 @@ class Food3 {
     this.render();
   }
 
-  update() {}
+  update() {
+    for (let i = 0; i < this.particle.length; i++) {
+      if (this.particle[i].isDead === true) {
+        this.particle.splice(i, 1);
+      }
+    }
+  }
 
   render() {
     for (let i = 0; i < this.particle.length; i++) {

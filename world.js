@@ -95,7 +95,7 @@ class World {
     for (let i = 0; i < 1; i++) {
       let loc = new JSVector(100, 100);
       let vel = new JSVector(0, 0);
-      this.entities.push(new Food3(loc, vel, 5, this));
+      this.entities.push(new Food3(loc, vel, 20, this));
     }
   } //++++++++++++++++++++++++++++  load entities
 } //++++++++++++++++++++++++++++++  end world constructor
