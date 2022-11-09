@@ -1,10 +1,10 @@
-class Food2 extends Entity {
+class Food2{
     // properties
-    constructor(loc, wrld) {
+    constructor(loc, ctx) {
         this.loc = loc;
         this.vel = new JSVector(Math.random()*2-1,Math.random()*2-1);
         this.acc = new JSVector(0, .05);
-        this.wrld = wrld;
+        this.ctx = ctx;
         this.death = 255;
         this.isDead = false;
         this.rad = 5;
@@ -29,13 +29,13 @@ class Food2 extends Entity {
     }
 
     render() {
-        this.wrld.beginPath();
-        this.wrld.arc(this.loc.x,this.loc.y,this.rad,0,Math.PI*2);
-        this.wrld.strokeStyle = this.clr;
-        this.wrld.fillStyle = this.clr;
-        this.wrld.fill();
-        this.wrld.stroke()
-        this.wrld.closePath();
+        this.ctx.beginPath();
+        this.ctx.arc(this.loc.x,this.loc.y,this.rad,0,Math.PI*2);
+        this.ctx.strokeStyle = this.clr;
+        this.ctx.fillStyle = this.clr;
+        this.ctx.fill();
+        this.ctx.stroke()
+        this.ctx.closePath();
     }
 
     getRandomColor() {

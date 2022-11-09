@@ -1,11 +1,12 @@
-class Food2ParticleSystem extends Entity {
-    constructor(loc, vel, sz, wrld) {
-        super(loc, vel, sz, wrld)
+class Food2ParticleSystem{
+    constructor(loc, ctx) {
+        this.loc = loc;
+        this.ctx = ctx;
         this.particles = [];
     }
 
     run(){
-        this.particles.push(new Food2(loc,wrld));
+        this.particles.push(new Food2(this.loc,this.ctx));
         for(let i = 0;i<this.particles.length;i++){
             this.particles[i].run();
         }
