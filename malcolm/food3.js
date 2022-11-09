@@ -1,18 +1,23 @@
 class Food3 {
   // properties
   constructor(loc, vel, sz, wrld) {
-    this.particle = [];
-    this.loadParticles(5, loc, sz, wrld);
-    // this.loc = loc;
-    // this.size = sz;
-    // this.ctx = wrld;
+    this.particles = [];
+    this.loadParticles(5);
+    this.loc = loc;
+    this.vel = vel;
+    this.size = sz;
+    this.ctx = wrld.ctxMain;
   }
   //  methods
-  loadParticles(n, loc, sz, wrld) {
+  loadParticles(n) {
     // loads particles
     for (let i = 0; i < n; i++) {
-      this.particle[i] = new Particle(loc, sz, wrld);
+      this.addParticle();
     }
+  }
+
+  addParticle(){
+    this.particles.push()
   }
 
   run() {
