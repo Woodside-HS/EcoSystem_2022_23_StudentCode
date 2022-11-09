@@ -60,8 +60,8 @@ class Particle {
   }
 
   makeMore() {
-    if (this.isDead == true) {
-      world.particle.push(new Particle(this.loc, this.size, this.ctx));
+    if (this.hp < 50) {
+      food3.particle.push(new Particle(this.loc, this.size, this.ctx));
     }
   }
 }
