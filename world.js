@@ -1,6 +1,8 @@
 //All creatures and food items are added to entities array
 
 class World {
+
+  //  Commit 1: 221109
   constructor() {
     this.cnvMain = document.getElementById("cnv1");
     this.ctxMain = this.cnvMain.getContext("2d");
@@ -22,17 +24,17 @@ class World {
 
   run() {
     // run the world in animation
-    this.ctxMain.fillStyle = "rgb(0, 0, 55)"; //  color of outer border on Main canvas
-    this.ctxMain.clearRect(0, 0, this.cnvMain.width, this.cnvMain.height); //  clear the canvas
+    this.ctxMain.fillStyle = 'rgb(0, 0, 55)';//  color of outer border on Main canvas
+    this.ctxMain.clearRect(0, 0, this.cnvMain.width, this.cnvMain.height);//  clear the canvas
+    //+++++++++++++++++++++++++++ Draw all entites
     this.ctxMain.save();
-    //  move the main canvas inside of the world
-    this.ctxMain.translate(-this.cnvMainLoc.x, -this.cnvMainLoc.y);
-
-    for (let i = 0; i < this.entities.length; i++) {
-      this.entities[i].run();
-    }
-
+      //  move the main canvas inside of the world
+      this.ctxMain.translate(-this.cnvMainLoc.x, -this.cnvMainLoc.y);
+      for (let i = 0; i < this.entities.length; i++) {//  All food and creatures
+        this.entities[i].run();
+      }
     this.ctxMain.restore();
+
     // translate cnvMain according to the location of the canvas in the world
     this.ctxMain.save();
     this.ctxMain.translate(this.cnvMainLoc.x * -1, this.cnvMainLoc.y * -1);
