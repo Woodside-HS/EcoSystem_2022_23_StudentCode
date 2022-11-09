@@ -37,11 +37,8 @@ class Particle {
         let ctx = this.ctx;
         ctx.strokeStyle = this.strkClr;
         ctx.fillStyle = this.fillClr;
-
         ctx.save();
-
         ctx.translate(this.loc.x, this.loc.y);
-
         ctx.beginPath();
         ctx.moveTo(0, 0);
         ctx.lineTo(-this.scl * 2, -this.scl);
@@ -50,7 +47,7 @@ class Particle {
         ctx.closePath();
         ctx.fill();
         ctx.stroke();
-        ctx.rotate(Math.PI / 2);
+        ctx.rotate(Math.PI*2/5);
         ctx.beginPath();
         ctx.moveTo(0, 0);
         ctx.lineTo(-this.scl * 2, -this.scl);
@@ -59,7 +56,7 @@ class Particle {
         ctx.closePath();
         ctx.fill();
         ctx.stroke();
-        ctx.rotate(Math.PI / 2);
+        ctx.rotate(Math.PI*2/5);
         ctx.beginPath();
         ctx.moveTo(0, 0);
         ctx.lineTo(-this.scl * 2, -this.scl);
@@ -68,7 +65,7 @@ class Particle {
         ctx.closePath();
         ctx.fill();
         ctx.stroke();
-        ctx.rotate(Math.PI / 2);
+        ctx.rotate(Math.PI*2/5);
         ctx.beginPath();
         ctx.moveTo(0, 0);
         ctx.lineTo(-this.scl * 2, -this.scl);
@@ -77,44 +74,14 @@ class Particle {
         ctx.closePath();
         ctx.fill();
         ctx.stroke();
-    //     ctx.beginPath();
-    //     ctx.moveTo(this.radius * 2, 0);
-    //     ctx.lineTo(-this.radius * 2, -this.radius);
-    //     ctx.lineTo(-this.radius * 2, this.radius)
-    //     ctx.closePath();
-        
-    //     ctx.fill();
-    //     ctx.stroke();
-
-
-    //     ctx.rotate(Math.PI / 2);
-    //     ctx.beginPath();
-    //     ctx.moveTo(this.radius * 2, 0);
-    //     ctx.lineTo(-this.radius * 2, -this.radius);
-    //     ctx.lineTo(-this.radius * 2, this.radius)
-    //     ctx.closePath();
-        
-    //     ctx.fill();
-    //     ctx.stroke();
-
-    //     ctx.rotate(Math.PI / 2);
-    //     ctx.beginPath();
-    //     ctx.moveTo(this.radius * 2, 0);
-    //     ctx.lineTo(-this.radius * 2, -this.radius);
-    //     ctx.lineTo(-this.radius * 2, this.radius)
-    //     ctx.closePath();
-        
-    //     ctx.fill();
-    //     ctx.stroke();
-    //    //  ctx.stroke();
-
-    //     ctx.rotate(Math.PI / 2);
-    //     ctx.beginPath();
-    //     ctx.moveTo(this.radius * 2, 0);
-    //     ctx.lineTo(-this.radius * 2, -this.radius);
-    //     ctx.lineTo(-this.radius * 2, this.radius)
-    //     ctx.closePath();
-        //ctx.fillStyle = this.fillClr;
+        ctx.rotate(Math.PI*2/5);
+        ctx.beginPath();
+        ctx.moveTo(0, 0);
+        ctx.lineTo(-this.scl * 2, -this.scl);
+        ctx.lineTo(-this.scl, 0);
+        ctx.lineTo(-this.scl * 2, this.scl);
+        ctx.closePath();
+    
         ctx.fill();
         ctx.stroke();
         ctx.restore();

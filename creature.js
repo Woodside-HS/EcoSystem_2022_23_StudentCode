@@ -59,7 +59,7 @@ class Creature extends Entity {
       ctx.fillStyle = this.clr;
       ctx.moveTo(this.scl, 0);
       ctx.lineTo(-this.scl*1.3, -this.scl);
-      ctx.lineTo(-this.scl-1.4, 0);
+      ctx.lineTo(-this.scl-5, 0);
       ctx.lineTo(-this.scl*1.3, this.scl);
       ctx.closePath();
       ctx.stroke();
