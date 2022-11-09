@@ -14,12 +14,13 @@ class World {
       height: 3000
     }
     this.entities = [];
-    this.loadEntities(900, this.ctxMain, this.dims.width, this.dims.height);
-    this.entities.push(new Creature(new JSVector(0, 0),
-      new JSVector(1, 1),
-      10,
-      this), new FoodSystem(new JSVector(0, 0), new JSVector(0, 0), 5, this, 30)
-    );
+    // this.loadEntities(900, this.ctxMain, this.dims.width, this.dims.height);
+    // this.entities.push(new Creature(new JSVector(0, 0),
+    //   new JSVector(1, 1),
+    //   10,
+    //   this)
+    // );
+    this.entities.push(new FoodSystem(new JSVector(0, 0), new JSVector(0, 0), 5, this, 30));
   }
 
   run() {

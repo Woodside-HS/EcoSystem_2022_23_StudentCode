@@ -28,14 +28,12 @@ class Food1 {
     }
   }
   
-  render( ){
-     this.ctx.beginPath();
-     this.ctx.arc(this.loc.x, this.loc.y, this.sz, 0, Math.PI*2);
-     this.ctx.closePath();
-     this.ctx.strokeStyle = this.clr;
-     this.ctx.fillStyle = this.clr;
-     this.ctx.fill();
-     this.ctx.stroke();
+  render(){
+    let ctx = this.ctx;
+    ctx.beginPath();
+    ctx.fillStyle = this.clr;
+    ctx.arc(this.loc.x, this.loc.y, this.sz, 0, 2 * Math.PI, false);
+    ctx.fill();
   }
   
   bounds() {

@@ -9,7 +9,7 @@ class FoodSystem extends Entity {
     }
     //  methods
     run() {
-        this.f_List.push(new Food1(this.loc, this.death, this.wrld, this.sz));
+        this.f_List.push(new Food1(this.loc, this.death, this.ctx, this.sz));
         this.pdeath();
         for(let i = 0; i<this.f_List.length; i++){
             this.f_List[i].run();
