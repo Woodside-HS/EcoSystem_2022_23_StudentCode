@@ -1,37 +1,46 @@
-//food particle
-
-class Food1 extends Entity {
-    // properties
-    constructor(loc, vel, sz, wrld) {
-        super(loc, vel, sz, wrld)
-        
+class Food1 {
     
+    constructor(start, death, ctx, sz) { //start will accept emitter.
+    this.loc = new JSVector(start.x, start.y); //recode with JSVector
+    this.vel = new JSVector(Math.random()*4-2, Math.random()*4-2);
+    this.acc = 0.05;
+    this.sz = sz; //5
+    this.life = Math.random()*5*death+10;
+    this.isDead = false;
+    this.ctx = ctx;
+    this.clr = "red";
+  }
+  
+  run() {
+    this.render();
+    this.update();
+    this.bounds();
+  }
+  
+  update() {
+    if(this.life<=0){
+      this.isDead = true;
     }
-    //  methods
-    run() {
-        this.update();
-        this.render();
+    else{
+    this.loc.add(this.vel);
+    this.vel.y+=this.acc;
+    this.life--;
     }
-
-    update() {
+  }
+  
+  render( ){
+     this.ctx.beginPath();
+     this.ctx.arc(this.loc.x, this.loc.y, this.sz, 0, Math.PI*2);
+     this.ctx.closePath();
+     this.ctx.strokeStyle = this.clr;
+     this.ctx.fillStyle = this.clr;
+     this.ctx.fill();
+     this.ctx.stroke();
+  }
+  
+  bounds() {
+    if(this.loc.y>world.dims.bottom || this.loc.y<world.dims.top || this.loc.x>world.dims.right || this.loc.x<world.dims.left){
+      this.isDead = true;
     }
-
-    render() {
-       
-    }
-
-    getRandomColor() {
-        //  List of hex color values for movers
-        let colors = [
-            "#25AA34",
-            "#18CC2e",
-            "#389925",
-            "#11AA99",
-            "#99CC00",
-            "#11FF65"
-        ];
-        let index = Math.floor(Math.random() * colors.length);
-        return colors[index];
-    }
-
+  }
 }

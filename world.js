@@ -18,7 +18,7 @@ class World {
     this.entities.push(new Creature(new JSVector(0, 0),
       new JSVector(1, 1),
       10,
-      this)
+      this), new FoodSystem(new JSVector(0, 0), new JSVector(0, 0), 5, this, 30)
     );
   }
 
