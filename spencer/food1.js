@@ -2,13 +2,13 @@ class Food1 {
     
     constructor(start, death, ctx, sz) { //start will accept emitter.
     this.loc = new JSVector(start.x, start.y); //recode with JSVector
-    this.vel = new JSVector(Math.random()*4-2, Math.random()*4-2);
-    this.acc = 0.05;
+    this.vel = new JSVector(Math.random()*1-0.5, Math.random()*1-0.5);
+    this.acc = 0.0005;
     this.sz = sz; //5
-    this.life = Math.random()*5*death+10;
+    this.life = Math.random()*2*death+10;
     this.isDead = false;
     this.ctx = ctx;
-    this.clr = "red";
+    this.clr = this.getRandomColor();
   }
   
   run() {
@@ -41,4 +41,18 @@ class Food1 {
       this.isDead = true;
     }
   }
+
+  getRandomColor() {
+    //  List of hex color values for movers
+    let colors = [
+        "#25AA34",
+        "#18CC2e",
+        "#389925",
+        "#11AA99",
+        "#99CC00",
+        "#11FF65"
+    ];
+    let index = Math.floor(Math.random() * colors.length);
+    return colors[index];
+}
 }

@@ -9,7 +9,7 @@ class FoodSystem extends Entity {
     }
     //  methods
     run() {
-        this.f_List.push(new Food1(this.loc, this.death, this.ctx, this.sz));
+        this.f_List.push(new Food1(this.loc, this.death, this.ctx, this.size));
         this.pdeath();
         for(let i = 0; i<this.f_List.length; i++){
             this.f_List[i].run();
@@ -25,18 +25,5 @@ class FoodSystem extends Entity {
         }
     }
 
-    getRandomColor() {
-        //  List of hex color values for movers
-        let colors = [
-            "#25AA34",
-            "#18CC2e",
-            "#389925",
-            "#11AA99",
-            "#99CC00",
-            "#11FF65"
-        ];
-        let index = Math.floor(Math.random() * colors.length);
-        return colors[index];
-    }
 
 }
