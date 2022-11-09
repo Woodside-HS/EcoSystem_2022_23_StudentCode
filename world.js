@@ -1,6 +1,8 @@
 //All creatures and food items are added to entities array
 
 class World {
+
+  //  Commit 1: 221109
   constructor() {
     this.cnvMain = document.getElementById('cnv1');
     this.ctxMain = this.cnvMain.getContext('2d');
@@ -14,36 +16,32 @@ class World {
       height: 3000
     }
     this.entities = [];
-    this.loadEntities(900, this.ctxMain, this.dims.width, this.dims.height);
-    this.entities.push(new Creature(new JSVector(0, 0),
-      new JSVector(1, 1),
-      10,
-      this)
-    );
+    this.loadEntities(90, this.ctxMain, this.dims.width, this.dims.height);
+
   }
 
   run() {
     // run the world in animation
     this.ctxMain.fillStyle = 'rgb(0, 0, 55)';//  color of outer border on Main canvas
     this.ctxMain.clearRect(0, 0, this.cnvMain.width, this.cnvMain.height);//  clear the canvas
+    //+++++++++++++++++++++++++++ Draw all entites
     this.ctxMain.save();
-    //  move the main canvas inside of the world
-    this.ctxMain.translate(-this.cnvMainLoc.x, -this.cnvMainLoc.y);
-
-    for (let i = 0; i < this.entities.length; i++) {
-      this.entities[i].run();
-    }
-
+      //  move the main canvas inside of the world
+      this.ctxMain.translate(-this.cnvMainLoc.x, -this.cnvMainLoc.y);
+      for (let i = 0; i < this.entities.length; i++) {//  All food and creatures
+        this.entities[i].run();
+      }
     this.ctxMain.restore();
+
     // translate cnvMain according to the location of the canvas in the world
     this.ctxMain.save();
-    this.ctxMain.translate(this.cnvMainLoc.x * (-1), this.cnvMainLoc.y * (-1));
-    //bounds of the world in cnvMain
-    this.ctxMain.strokeStyle = "rgba(0, 255, 0, 1)"
-    this.ctxMain.beginPath();
-    this.ctxMain.lineWidth = 12;
-    this.ctxMain.strokeRect(this.dims.left, this.dims.top, this.dims.width, this.dims.height);
-    this.ctxMain.stroke();
+      this.ctxMain.translate(this.cnvMainLoc.x * (-1), this.cnvMainLoc.y * (-1));
+       //bounds of the world in cnvMain
+      this.ctxMain.strokeStyle = "rgba(0, 255, 0, 1)"
+      this.ctxMain.beginPath();
+      this.ctxMain.lineWidth = 12;
+      this.ctxMain.strokeRect(this.dims.left, this.dims.top, this.dims.width, this.dims.height);
+      this.ctxMain.stroke();
     this.ctxMain.restore();
   }
   //Load mover array
