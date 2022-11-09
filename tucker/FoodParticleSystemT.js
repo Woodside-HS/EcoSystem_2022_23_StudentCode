@@ -1,9 +1,9 @@
-class Food6 extends Entity {
+class FoodParticleSystemT {
     // properties
-    constructor(loc, vel, sz, wrld) {
-        super(loc, vel, sz, wrld)
+    constructor(loc, sz, wrld) {
+//        super(loc, sz, wrld)
         this.loc = loc;
-        this.vel = vel;
+        //this.vel = vel;
         this.rad = sz;
         this.ctx = wrld.ctxMain;
         this.with = wrld.dims.width;
@@ -14,11 +14,16 @@ class Food6 extends Entity {
     //  methods
     run() {
         this.update();
-        this.render();
     }
     update() {
-        this.yummy.push(this.loc, new JSVector(Math.random()*4-2,Math.random()*4-2), thsi.getRandomColor(), 5, Math.random()*1000+1000)
-
+        this.yummy.push(this.loc, new JSVector(Math.random()*4-2,Math.random()*4-2), thsi.getRandomColor(), 5, Math.random()*1000+1000);
+        for(let i = this.yummy.length; i>0;i++){
+            this.yummy[i].run();
+            //runs yummu
+            if(this.yummy[i].isDead = true){//splices out dead food
+                this.yummy.splice(i,1);
+            }
+        }
     }
 
     render() {

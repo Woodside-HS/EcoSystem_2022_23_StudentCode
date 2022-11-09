@@ -26,7 +26,7 @@ class World {
     this.ctxMain.save();
       //  move the main canvas inside of the world
       this.ctxMain.translate(-this.cnvMainLoc.x, -this.cnvMainLoc.y);
-      for (let i = 0; i < this.entities.length; i++) {//  All food and creatures
+      for (let i = 0; i < this.entities.length; i++) {//  All food and creatures - tHE HOLY FOR LOOP
         this.entities[i].run();
       }
     this.ctxMain.restore();
@@ -79,6 +79,11 @@ class World {
           6,
           this)
       );
+    }
+    //Tucker's Food Particle System Lab LMAO SMH my 4head
+    for(let i = 0; i < 20; i++){
+      let locT = new JSVector(Math.random() * (this.dims.width-20) - (this.dims.width / 2 - 10),Math.random() * (this.dims.height-20) - (this.dims.height / 2 - 10));
+      this.entities.push(locT,new JSVector(0,0),10,this)
     }
   }//++++++++++++++++++++++++++++  load entities
 

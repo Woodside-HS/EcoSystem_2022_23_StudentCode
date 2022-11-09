@@ -11,6 +11,9 @@ class FoodParticleT {
         this.update();
         this.render();
         this.lifeSpan--;
+        if(lifeSpan <= 0){
+            this.isDead = true;
+        }
     }
     update(){
         this.loc.add(this.vel);
@@ -26,7 +29,7 @@ class FoodParticleT {
         ctx.arc(this.loc.x,this.loc.y,this.rad,0,Math.PI*2);
         ctx.fillStyle = "black";
         ctx.strokeStyle = "black";
-        ctx.fill;
-        ctx.stroke;
+        ctx.fill();
+        ctx.stroke();
     }
 }
