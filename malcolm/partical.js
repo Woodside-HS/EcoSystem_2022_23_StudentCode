@@ -24,7 +24,7 @@ class Particle {
   }
   render() {
     let ctxMain = world.ctxMain;
-    ctxMain.save();
+    // ctxMain.save();
     ctxMain.beginPath();
     ctxMain.fillText(this.hp, this.loc.x - 5, this.loc.y - 30);
     ctxMain.arc(this.loc.x, this.loc.y, this.size, 0, 2 * Math.PI);
@@ -32,7 +32,6 @@ class Particle {
     ctxMain.strokeStyle = "black";
     ctxMain.fill();
     ctxMain.stroke();
-    ctxMain.restore();
   }
 
   update() {

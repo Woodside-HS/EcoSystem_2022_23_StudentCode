@@ -38,7 +38,7 @@ class Food3 {
       }
     }
     for (let i = 0; i < this.particles.length; i++) {
-      if (this.particles[i].isDead === true) {
+      if (this.particles[i].isDead) {
         this.particles.splice(i, 1);
       }
     }

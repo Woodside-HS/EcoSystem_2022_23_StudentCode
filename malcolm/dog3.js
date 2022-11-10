@@ -10,6 +10,7 @@ class Dog3 {
   run() {
     this.render();
     this.update();
+    this.seek();
   }
   render() {
     this.ctxMain.save();
@@ -33,9 +34,10 @@ class Dog3 {
   }
   update() {
     this.loc.add(this.vel);
-
-    // for (let i = 0; i < food3.particles.length; i++) {
-    //   console.log("lll");
+  }
+  seek() {
+    // for (let i = 0; i < world.entities.length; i++) {
+    //   let dist = new JSVector.subGetNew(this.loc, world.entities[i].);
     // }
   }
 }
