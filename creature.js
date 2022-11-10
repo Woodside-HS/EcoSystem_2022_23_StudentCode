@@ -1,6 +1,6 @@
-class Creature extends Entity {
+class Creature {//extends Entity {
    constructor(loc, vel, sz, wrld) {
-      super(loc, vel, sz, wrld)
+      //super(loc, vel, sz, wrld)
       //mover properties
       this.loc = loc;
       this.vel = vel;
@@ -21,7 +21,7 @@ class Creature extends Entity {
          pregnant: false,
          numOffspring:1,
          predRank: 5, //  predatory rank 0-10
-         herbavor: false,
+         herbivore: false,
          maxSpeed: 1,
          scentValue: 100,
          sightValue: 100,

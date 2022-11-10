@@ -8,7 +8,7 @@ class Particle {
         this.vel = new JSVector(Math.random() * .1 - .05, Math.random() * .1 - .05);
         this.lifespan = 1100;
         this.lifeLeft = this.lifespan;
-        this.scl = 6;
+        this.sz = 6;
         this.isDead = false;
         this.alpha = 1;
         this.strkClr = "rgba(1, 1, 1, 1)";
@@ -35,56 +35,46 @@ class Particle {
     // Render the PointingParticle, which points in the direction of its velocity
     render() {
         let ctx = this.ctx;
-        ctx.strokeStyle = this.strkClr;
-        ctx.fillStyle = this.fillClr;
+        let alpha = this.lifeLeft / this.lifespan;
+        ctx.lineWidth = 3;
+        ctx.lineCap = "round";
+        ctx.strokeStyle = "rgba(1, 1, 1," + alpha + ")";
+        ctx.fillStyle = "rgba(10, 200, 120," + alpha + ")";
         ctx.save();
         ctx.translate(this.loc.x, this.loc.y);
+
         ctx.beginPath();
         ctx.moveTo(0, 0);
-        ctx.lineTo(-this.scl * 2, -this.scl);
-        ctx.lineTo(-this.scl, 0);
-        ctx.lineTo(-this.scl * 2, this.scl);
+        ctx.lineTo(-this.sz * 2, -this.sz);
+        ctx.lineTo(-this.sz * 1.5, 0);
+        ctx.lineTo(-this.sz * 2, this.sz);
         ctx.closePath();
-        ctx.fill();
-        ctx.stroke();
-        ctx.rotate(Math.PI*2/5);
-        ctx.beginPath();
+
+        ctx.rotate(Math.PI / 2);
         ctx.moveTo(0, 0);
-        ctx.lineTo(-this.scl * 2, -this.scl);
-        ctx.lineTo(-this.scl, 0);
-        ctx.lineTo(-this.scl * 2, this.scl);
+        ctx.lineTo(-this.sz * 2, -this.sz);
+        ctx.lineTo(-this.sz * 1.5, 0);
+        ctx.lineTo(-this.sz * 2, this.sz);
         ctx.closePath();
-        ctx.fill();
-        ctx.stroke();
-        ctx.rotate(Math.PI*2/5);
-        ctx.beginPath();
+
+        ctx.rotate(Math.PI / 2);
         ctx.moveTo(0, 0);
-        ctx.lineTo(-this.scl * 2, -this.scl);
-        ctx.lineTo(-this.scl, 0);
-        ctx.lineTo(-this.scl * 2, this.scl);
+        ctx.lineTo(-this.sz * 2, -this.sz);
+        ctx.lineTo(-this.sz * 1.5, 0);
+        ctx.lineTo(-this.sz * 2, this.sz);
         ctx.closePath();
-        ctx.fill();
-        ctx.stroke();
-        ctx.rotate(Math.PI*2/5);
-        ctx.beginPath();
+
+        ctx.rotate(Math.PI / 2);
         ctx.moveTo(0, 0);
-        ctx.lineTo(-this.scl * 2, -this.scl);
-        ctx.lineTo(-this.scl, 0);
-        ctx.lineTo(-this.scl * 2, this.scl);
+        ctx.lineTo(-this.sz * 2, -this.sz);
+        ctx.lineTo(-this.sz * 1.5, 0);
+        ctx.lineTo(-this.sz * 2, this.sz);
         ctx.closePath();
-        ctx.fill();
-        ctx.stroke();
-        ctx.rotate(Math.PI*2/5);
-        ctx.beginPath();
-        ctx.moveTo(0, 0);
-        ctx.lineTo(-this.scl * 2, -this.scl);
-        ctx.lineTo(-this.scl, 0);
-        ctx.lineTo(-this.scl * 2, this.scl);
-        ctx.closePath();
-    
+        
         ctx.fill();
         ctx.stroke();
         ctx.restore();
+
     }
 }
 

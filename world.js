@@ -15,7 +15,7 @@ class World {
     }
     this.entities = [];
     this.loadEntities(90, this.ctxMain, this.dims.width, this.dims.height);
-
+    this.test = new Tester(this.ctxMain);
   }
 
   run() {
