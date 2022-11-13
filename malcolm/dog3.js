@@ -8,7 +8,6 @@ class Dog3 {
     this.vX = Math.random() * (1 - -1) + -1;
     this.vY = Math.random() * (1 - -1) + -1;
     this.vel = new JSVector(this.vX, this.vY);
-    this.color = "#00ab66";
     this.hp = 100;
     this.isDead = false;
     this.lifespan = 50;
@@ -25,9 +24,9 @@ class Dog3 {
   render() {
     this.ctxMain.save();
     this.ctxMain.beginPath();
-    this.ctxMain.translate(this.loc.x, this.loc.y);
-    this.ctxMain.fillText(this.hp, -5, -20);
-    this.ctxMain.rotate(this.angle);
+    this.ctxMain.translate(this.loc.x, this.loc.y); // translates the (0,0) to the loc of the creatures
+    this.ctxMain.fillText(this.hp, -5, -20); // displays the hp
+    this.ctxMain.rotate(this.angle); // rotates to the anlge of the vel
     this.ctxMain.moveTo(-5, -10);
     this.ctxMain.lineTo(20, 0);
     this.ctxMain.lineTo(-5, 10);
@@ -41,8 +40,9 @@ class Dog3 {
     this.ctxMain.restore();
   }
   update() {
+    this.color = "#00ab66"; // sets colore to green
     this.loc.add(this.vel);
-    this.angle = this.vel.getDirection();
+    this.angle = this.vel.getDirection(); // gets the direction of the vel
   }
   seek() {
     let desiredDist = 50;
@@ -56,28 +56,35 @@ class Dog3 {
         this.vel.add(diff);
         this.vel.limit(2);
         if (dist < 10) {
+          particles.vel = new JSVector(0, 0);
           this.vel = new JSVector(0, 0);
           // particles.hp--;
           this.hp = this.hp + particles.hp--;
           if (particles.isDead == true || diff > 10) {
             this.vel.x = this.vX;
             this.vel.y = this.vY;
-            this.color = "#00ab66";
+            this.color = "#00ab66"; // sets colore to red
           }
         }
       }
     }
   }
   healthPoints() {
+    // limits the hp
+    if (this.hp > 100) {
+      this.hp = 100;
+    }
     if (this.hp === 0) {
       this.isDead = true;
     }
+    // if the count is greater than the lifespan the creature loses hp
     if (++this.count >= this.lifespan) {
       this.hp--;
       this.count = 0;
     }
   }
   checkEdges() {
+    // checks if the creature is hitting a wall
     let dims = world.dims;
     // if (this.loc.x > dims.right) this.vel.x = -this.vel.x;
     // if (this.loc.x < dims.left) this.vel.x = -this.vel.x;

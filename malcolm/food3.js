@@ -18,7 +18,7 @@ class Food3 {
 
   addParticles() {
     this.particles.push(new Particle(this.loc, this.ctx));
-    console.log(this.particles.length);
+    console.log("there are " + this.particles.length + " particals");
   }
 
   run() {
