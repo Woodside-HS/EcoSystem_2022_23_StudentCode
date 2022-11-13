@@ -21,6 +21,7 @@ class Particle {
     this.render();
     this.update();
     this.healthPoints();
+    this.flock();
   }
   render() {
     let ctxMain = world.ctxMain;
@@ -52,5 +53,18 @@ class Particle {
       this.hp--;
       this.count = 0;
     }
+  }
+  flock() {
+    let count = 0;
+    let csq = 200 * 200; // desiredCoh squard
+    let sum = new JSVector(0, 0);
+    let steer = new JSVector(0, 0);
+    let cohesionForce = new JSVector();
+    // let world.entities[1900].particles[] = particles;
+    // console.log(world.entities[1900].particles);
+
+    // for (let i = 0; i < world.entities[1900].particles; i++) {
+    //   let particles.
+    // }
   }
 }

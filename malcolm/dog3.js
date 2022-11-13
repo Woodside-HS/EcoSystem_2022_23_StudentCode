@@ -2,7 +2,9 @@ class Dog3 {
   constructor(wrld) {
     this.world = wrld;
     this.ctxMain = this.world.ctxMain;
-    this.loc = new JSVector(100, 100);
+    let x = Math.random() * (700 - 100);
+    let y = Math.random() * (600 - 100);
+    this.loc = new JSVector(x, y);
     this.vX = Math.random() * (1 - -1) + -1;
     this.vY = Math.random() * (1 - -1) + -1;
     this.vel = new JSVector(this.vX, this.vY);
@@ -11,27 +13,26 @@ class Dog3 {
     this.isDead = false;
     this.lifespan = 50;
     this.count = 0;
+    this.angle = 0; // anlge of the dog
   }
   run() {
     this.render();
     this.update();
     this.seek();
     this.healthPoints();
+    this.checkEdges();
   }
   render() {
     this.ctxMain.save();
     this.ctxMain.beginPath();
     this.ctxMain.translate(this.loc.x, this.loc.y);
-    this.ctxMain.moveTo(0, 0);
-    this.ctxMain.lineTo(10, 0);
-    this.ctxMain.lineTo(10, -10);
-    this.ctxMain.lineTo(-10, -10);
-    this.ctxMain.lineTo(-10, 10);
-    this.ctxMain.lineTo(10, 10);
-    this.ctxMain.lineTo(10, 5);
-    this.ctxMain.lineTo(0, 5);
-    this.ctxMain.closePath();
     this.ctxMain.fillText(this.hp, -5, -20);
+    this.ctxMain.rotate(this.angle);
+    this.ctxMain.moveTo(-5, -10);
+    this.ctxMain.lineTo(20, 0);
+    this.ctxMain.lineTo(-5, 10);
+    this.ctxMain.lineTo(0, 0);
+    this.ctxMain.closePath();
 
     this.ctxMain.fillStyle = this.color;
     this.ctxMain.strokeStyle = "black";
@@ -41,6 +42,7 @@ class Dog3 {
   }
   update() {
     this.loc.add(this.vel);
+    this.angle = this.vel.getDirection();
   }
   seek() {
     let desiredDist = 50;
@@ -55,11 +57,12 @@ class Dog3 {
         this.vel.limit(2);
         if (dist < 10) {
           this.vel = new JSVector(0, 0);
-          particles.hp--;
-          this.hp = this.hp + particles.hp;
-          if (particles.isDead == true) {
+          // particles.hp--;
+          this.hp = this.hp + particles.hp--;
+          if (particles.isDead == true || diff > 10) {
             this.vel.x = this.vX;
             this.vel.y = this.vY;
+            this.color = "#00ab66";
           }
         }
       }
@@ -73,5 +76,18 @@ class Dog3 {
       this.hp--;
       this.count = 0;
     }
+  }
+  checkEdges() {
+    let dims = world.dims;
+    // if (this.loc.x > dims.right) this.vel.x = -this.vel.x;
+    // if (this.loc.x < dims.left) this.vel.x = -this.vel.x;
+    // if (this.loc.y > dims.bottom) this.vel.y = -this.vel.y;
+    // if (this.loc.y < dims.top) this.vel.y = -this.vel.y;
+    //! TEMP delete later &&&&&&&&&&&&&&&&
+    if (this.loc.x > 800) this.vel.x = -this.vel.x;
+    if (this.loc.x < 0) this.vel.x = -this.vel.x;
+    if (this.loc.y > 600) this.vel.y = -this.vel.y;
+    if (this.loc.y < 0) this.vel.y = -this.vel.y;
+    //! TEMP delete later &&&&&&&&&&&&&&&&
   }
 }
