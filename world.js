@@ -98,6 +98,7 @@ class World {
       let loc = new JSVector(100, 100);
       let vel = new JSVector(0, 0);
       this.entities.push(new Food3(loc, vel, 20, this));
+      // console.log(this.entities[1900]);
     }
     for (let i = 0; i < 1; i++) {
       this.entities.push(new Creatures3(this));

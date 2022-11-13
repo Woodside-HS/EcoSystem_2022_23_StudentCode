@@ -21,5 +21,11 @@ class Creatures3 {
       this.dogs3[i].run();
     }
   }
-  update() {}
+  update() {
+    for (let i = 0; i < this.dogs3.length; i++) {
+      if (this.dogs3[i].isDead) {
+        this.dogs3.splice(i, 1);
+      }
+    }
+  }
 }

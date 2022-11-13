@@ -11,7 +11,7 @@ class Particle {
     this.size = 1;
     this.maxSize = 20;
     this.ctx = wrld;
-    this.hp = Math.floor(Math.random() * (100 - 50) + 50);
+    this.hp = Math.floor(Math.random() * (100 - 50) + 50); //health points
     this.count = 0;
     this.isDead = false;
     this.lifespan = Math.random() * (100 - 10) + 10;
