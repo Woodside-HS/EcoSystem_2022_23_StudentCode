@@ -51,6 +51,10 @@ class World {
       this.entities.push(new Food2ParticleSystem(food2loc,this.ctxMain))
     }
 
+    for(let i = 0;i<1;i++){
+      this.entities.push(new Creature2(this.ctxMain));
+    }
+
     //  generic entities
     for (let i = 0; i < numEntities; i++) {
       let diam = 3;
