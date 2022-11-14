@@ -1,15 +1,22 @@
 class Tester {
+
     constructor(ctx) {
         this.nums = [];
         this.objs = [];
+
         this.objs2 = {
-            creatures: [],
-            food: [],
-            ps: []
+            creature1: [],
+            creature2: [],
+            food1: [],
+            food2: [],
+            ps: [],
+            flocks: [],
         }
+
         this.startTime = new Date();
         this.endTime = new Date();
         this.ctx = ctx;
+        //this.loadNumbers();
         this.loadObjects2();
     }
 
@@ -64,32 +71,39 @@ class Tester {
 
         for (let i = 0; i < n1; i++) {
             let loc = new JSVector(100, 100);
-            this.objs2.creatures.push(new Particle(loc, this.ctx )) ;
+            this.objs2.creature1.push(new Particle(loc, this.ctx));
         }
         for (let i = 0; i < n2; i++) {
             let loc = new JSVector(100, 100);
-            this.objs2.food.push(new Particle(loc, this.ctx )) ;
+            this.objs2.food1.push(new Particle(loc, this.ctx));
         }
         for (let i = 0; i < n3; i++) {
             let loc = new JSVector(100, 100);
-            this.objs2.ps.push(new FoodPS1(loc, this.ctx )) ;
+            this.objs2.ps.push(new FoodPS1(loc, this.ctx));
         }
 
-  
+
         this.endTime = new Date().getTime();
         console.log("end = " + this.endTime);
         console.log("diff = " + ((this.endTime - this.startTime)) + "  milliseconds");
     }
 
-    findObject(obj, key){
-            let retObject = obj;
-            if(key === 'creatures'){
-
-            }else if(key === 'food'){
-
-            }else if(key === 'ps'){
-                
+    findObject(obj, dist, key) {
+        let retObject;
+        if (key === 'creatures') {
+            for (let i = 0; i < n1; i++) {
+                let d = this.objs2.creatures[i].loc.dist(obj.loc);
+                if (d <= dist) {
+                    return this.objs2.creatures[i]
+                }
             }
+        } else if (key === 'food') {
+
+        } else if (key === 'ps') {
+
+        }
+
+        return retObject;
     }
 }//#############################################  Tester Class
 
