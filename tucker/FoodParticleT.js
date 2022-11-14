@@ -1,8 +1,8 @@
 class FoodParticleT {
     constructor(sLoc,sVel,clr,rad,dday){
-        this.loc = sLoc;
-        this.loc.x = this.loc.x + Math.random() * 4 - 2;
-        this.loc.y = this.loc.y + Math.random() * 4 - 2;  
+        this.loc = new JSVector(sLoc.x,sLoc.y);
+        this.loc.x = this.loc.x + Math.random() * 40 - 20;
+        this.loc.y = this.loc.y + Math.random() * 40 - 20;  
         //this.vel = sVel;
         this.clr = clr;
         this.rad = rad;

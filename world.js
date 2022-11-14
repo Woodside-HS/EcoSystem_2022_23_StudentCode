@@ -85,7 +85,7 @@ class World {
     //Tucker's Food Particle System Lab LMAO SMH my 4head
     for(let i = 0; i < 1; i++){
       //let locT = new JSVector(Math.random() * (this.dims.width-20) - (this.dims.width / 2 - 10),Math.random() * (this.dims.height-20) - (this.dims.height / 2 - 10));
-      let locT = new JSVector(0,0);
+      let locT = new JSVector(300,300);
       this.entities.push(new FoodParticleSystemT(locT,10,this))
     }
   }//++++++++++++++++++++++++++++  load entities

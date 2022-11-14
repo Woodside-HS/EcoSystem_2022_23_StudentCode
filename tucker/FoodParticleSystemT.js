@@ -2,7 +2,7 @@ class FoodParticleSystemT {
     // properties
     constructor(loc, sz, wrld) {
         //        super(loc, sz, wrld)
-        this.loc = loc;
+        this.loc = loc;//particle system is updatingfor some reason
         //this.vel = vel;
         this.rad = sz;
         this.ctx = wrld.ctxMain;
@@ -14,11 +14,11 @@ class FoodParticleSystemT {
     //  methods
     run() {
         this.yummy.push(new FoodParticleT(this.loc, new JSVector(Math.random() * 4 - 2, Math.random() * 4 - 2), this.getRandomColor(), 5, Math.random() * 100 + 100));
-        
+
         for (let i = this.yummy.length - 1; i >= 0; i--) {
             this.yummy[i].run();
-            if (this.yummy[i].isDead = true) {//splices out dead food
-                //this.yummy.splice(i, 1);
+            if (this.yummy[i].isDead) {//splices out dead food
+                this.yummy.splice(i, 1);
             }
         }
     }
