@@ -3,7 +3,7 @@ class FoodParticleT {
         this.loc = new JSVector(sLoc.x,sLoc.y);
         this.loc.x = this.loc.x + Math.random() * 40 - 20;
         this.loc.y = this.loc.y + Math.random() * 40 - 20;  
-        //this.vel = sVel;
+        this.vel = sVel.copy();
         this.clr = clr;
         this.rad = rad;
         this.isDead = false;
@@ -18,7 +18,7 @@ class FoodParticleT {
         this.lifeSpan--;
     }
     update(){
-        //this.loc.add(this.vel);
+        this.loc.add(this.vel);
     }
     render(){
         let ctx = world.ctxMain;
