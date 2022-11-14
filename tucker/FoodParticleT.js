@@ -1,22 +1,24 @@
 class FoodParticleT {
     constructor(sLoc,sVel,clr,rad,dday){
         this.loc = sLoc;
-        this.vel = sVel;
+        this.loc.x = this.loc.x + Math.random() * 4 - 2;
+        this.loc.y = this.loc.y + Math.random() * 4 - 2;  
+        //this.vel = sVel;
         this.clr = clr;
         this.rad = rad;
         this.isDead = false;
         this.lifeSpan = dday
     }
     run() {
-        this.update();
-        this.render();
-        this.lifeSpan--;
         if(this.lifeSpan <= 0){
             this.isDead = true;
         }
+        this.update();
+        this.render();
+        this.lifeSpan--;
     }
     update(){
-        this.loc.add(this.vel);
+        //this.loc.add(this.vel);
     }
     render(){
         let ctx = world.ctxMain;

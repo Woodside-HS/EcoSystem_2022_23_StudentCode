@@ -13,27 +13,14 @@ class FoodParticleSystemT {
     }
     //  methods
     run() {
-        this.update();
-    }
-    update() {
         this.yummy.push(new FoodParticleT(this.loc, new JSVector(Math.random() * 4 - 2, Math.random() * 4 - 2), this.getRandomColor(), 5, Math.random() * 100 + 100));
+        
         for (let i = this.yummy.length - 1; i >= 0; i--) {
             this.yummy[i].run();
-        }
-        this.killParticle();
-    }
-    killParticle() {
-        //runs yummu
-        for (let i = this.yummy.length - 1; i >= 0; i--) {
             if (this.yummy[i].isDead = true) {//splices out dead food
-                this.yummy.splice(i, 1);
+                //this.yummy.splice(i, 1);
             }
         }
-
-    }
-
-    render() {
-        let ctx = this.ctx;
     }
 
     getRandomColor() {
