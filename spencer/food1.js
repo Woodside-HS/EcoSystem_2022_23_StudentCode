@@ -3,7 +3,7 @@ class Food1 {
     constructor(start, death, ctx, sz) { //start will accept emitter.
     this.loc = new JSVector(start.x, start.y); //recode with JSVector
     this.vel = new JSVector(Math.random()*0.5-0.25, Math.random()*0.5-0.25);
-    //this.acc = 0;
+    this.acc = 0;
     this.sz = sz; //5
     this.life = Math.random()*30*death+10;
     this.isDead = false;

@@ -2,6 +2,7 @@ class FoodSystem1 extends Entity {
     // properties
     constructor(loc, vel, sz, wrld, death) {
         super(loc, vel, sz, wrld)
+        this.id = "psystem";
         this.death = death;
         this.vel.multiply(0);
         this.f_List = [];

@@ -46,6 +46,7 @@ class World {
   }
   //Load mover array
   loadEntities(numEntities, ctx1, w, h) {
+    /*
 
     //  generic entities
     for (let i = 0; i < numEntities; i++) {
@@ -81,7 +82,7 @@ class World {
           6,
           this)
       );
-    }
+    } // */
 
     // food1 Spencer
     for(let i = 0; i<1; i++){
@@ -90,7 +91,7 @@ class World {
 
     // creature1 Spencer
     for(let i = 0; i<1; i++){
-      this.entities.push(new Creature1(new JSVector(100, 100), new JSVector(Math.random()*4, Math.random()*4), 10, this));
+      this.entities.push(new Creature1(new JSVector(100, 100), new JSVector(Math.random()*3, Math.random()*3), 10, this));
     }
 
 

@@ -2,9 +2,13 @@ class Creature1 extends Creature{
 
 constructor(loc, vel, sz, wrld){
     super(loc, vel, sz, wrld);
-    this.maxSpeed = 4;
+    this.maxSpeed = 2;
 }
 
+run(){
+    super.run();
+    this.eat();
+}
 
 render(){
     let context = this.ctx;
@@ -25,25 +29,34 @@ render(){
 
 
 eat(){
-    for(let i = 0; i<World.entities.length; i++){
-        if(typeof(entities[i]) == FoodSystem1){
-            if(this.loc.distance(foodSystem1) < 500){
-                attract(entities[i]);
-                for(let j = 0; j<entities[i].f_list.length; j++){
-                    if(this.loc.distance(entities[i].f_list[j]) == 20){
-                        entities[i].clr = "red";
-                        entities[i].f_list[i].life = 5;
+    for(let i = 0; i<world.entities.length; i++){
+        if(world.entities[i].id == "psystem"){
+            //if(this.loc.distance(foodSystem1) < 500){
+                this.attract(world.entities[i]);
+                for(let j = 0; j<world.entities[i].f_List.length; j++){
+                    if(this.loc.distance(world.entities[i].f_List[j].loc) == 100){
+                        world.entities[i].f_List[j].clr = "black";
+                        world.entities[i].f_List[i].life = 30;
                     }
                 }
-            }
+            //}
         }
     }
 
 }
 
 attract(fsystem){
-    this.acc = JSVector.subGetNew(fsystem.loc, this.loc);
-    this.acc.normalize().multiply(0.05);
+    let closest = 500000;
+    let index = 0;
+    for(let k = 0; k<fsystem.f_List.length; k++){
+        if(this.loc.distance(fsystem.f_List[0].loc, this.loc)<closest){
+            index = k;
+            closest = this.loc.distance(fsystem.f_List[0].loc, this.loc);
+        }
+    }
+    this.acc = JSVector.subGetNew(fsystem.f_List[index].loc, this.loc);
+    this.acc.normalize();
+    this.acc.multiply(0.05);
 }
 
 
