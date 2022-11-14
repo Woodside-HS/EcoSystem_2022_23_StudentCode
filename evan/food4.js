@@ -6,12 +6,13 @@ class Food4 extends Entity {
         this.vel = vel;
         this.world = wrld;
         this.size = sz;
-        this.alive = true;sdwqqqqqqqqqq
+        this.alive = true;
         this.clr = clr;
+        this.health = Math.random() * (10000-1000) + 1000;
         
     
     }
-    //  methods
+   
     run() {
         this.update();
         this.render();
@@ -19,6 +20,9 @@ class Food4 extends Entity {
     }
 
     update() {
+        this.loc.add(this.vel);
+        this.health--;
+        this.lifespane(this.alive);
     }
 
     render() {
@@ -31,7 +35,7 @@ class Food4 extends Entity {
         this.ctx.stroke();    
     }
 
-    lifespan(){
+    lifespan(health){
         this.life = health;
         if (this.life <= 0) {
             this.alive = false;
