@@ -46,9 +46,11 @@ class World {
   }
   //Load mover array
   loadEntities(numEntities, ctx1, w, h) {
-
     let food2loc = new JSVector(400,400);
-    this.entities.push(new Food2ParticleSystem(food2loc, this.ctxMain))
+    for(let i = 0;i<1;i++){
+      this.entities.push(new Food2ParticleSystem(food2loc,this.ctxMain))
+    }
+
     //  generic entities
     for (let i = 0; i < numEntities; i++) {
       let diam = 3;

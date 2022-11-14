@@ -12,8 +12,8 @@ class Food2{
     //  methods
     run() {
         this.update();
-        this.render();
         this.life();
+        this.render();
     }
 
     update() {
@@ -22,17 +22,17 @@ class Food2{
     }
 
     life () {
-        this.death = this.death-2;
-        if(this.death <= 0){
-            this.isDead = true()
+        this.death = this.death-1;
+        if(this.death <= 0){ 
+            this.isDead = true;
         }
     }
 
     render() {
         this.ctx.beginPath();
         this.ctx.arc(this.loc.x,this.loc.y,this.rad,0,Math.PI*2);
-        this.ctx.strokeStyle = this.clr;
-        this.ctx.fillStyle = this.clr;
+        this.ctx.strokeStyle = "red";
+        this.ctx.fillStyle = "red";
         this.ctx.fill();
         this.ctx.stroke()
         this.ctx.closePath();
