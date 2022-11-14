@@ -1,6 +1,8 @@
 //All creatures and food items are added to entities array
 
 class World {
+
+  //  Commit 1: 221109
   constructor() {
     this.cnvMain = document.getElementById('cnv1');
     this.ctxMain = this.cnvMain.getContext('2d');
