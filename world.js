@@ -88,6 +88,11 @@ class World {
       this.entities.push(new FoodSystem1(new JSVector(300, 200), new JSVector(0, 0), 10, this, 30));
     }
 
+    // creature1 Spencer
+    for(let i = 0; i<1; i++){
+      this.entities.push(new Creature1(new JSVector(100, 100), new JSVector(Math.random()*4, Math.random()*4), 10, this));
+    }
+
 
 
   }//++++++++++++++++++++++++++++  load entities
