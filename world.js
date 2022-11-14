@@ -88,6 +88,11 @@ class World {
       let locT = new JSVector(300,300);
       this.entities.push(new FoodParticleSystemT(locT,10,this))
     }
+    for(let i =0; i< 3; i++){
+      let locT = new JSVector(200,200);
+      let velT = new JSVector(Math.random()*4-2,Math.random()*4-2);
+      this.entities.push(new creatureT(locT,velT,10,this.ctxMain));
+    }
   }//++++++++++++++++++++++++++++  load entities
 
 

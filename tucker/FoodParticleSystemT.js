@@ -9,10 +9,11 @@ class FoodParticleSystemT {
         this.hight = wrld.dims.height;
         this.clr = this.getRandomColor();
         this.yummy = [];
+        this.id = "fdPrtcl";
     }
     //  methods
     run() {
-        this.yummy.push(new FoodParticleT(this.loc, new JSVector(Math.random() * .75 - 0.375, Math.random() * .75 - 0.375 ), this.getRandomColor(), 5, Math.random() * 100 + 100));
+        this.yummy.push(new FoodParticleT(this.loc, new JSVector(Math.random() * 5 - 2.5, Math.random() * 5 - 2.5 ), this.getRandomColor(), 5, Math.random() * 100 + 100));
 
         for (let i = this.yummy.length - 1; i >= 0; i--) {
             this.yummy[i].run();
