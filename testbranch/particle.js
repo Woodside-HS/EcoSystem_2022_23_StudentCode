@@ -23,10 +23,7 @@ class Particle {
     update() {
         this.lifeLeft--;
         this.alpha = this.lifeLeft / this.lifespan;
-        this.strkClr = "rgba(1, 1, 1, " + this.alpha + ")";
-        this.fillClr = "rgba(20, 240, 160, " + this.alpha + ")";
         this.loc.add(this.vel);
-        ;
         if (this.lifeLeft < 0) {
             this.isDead = true;
         }

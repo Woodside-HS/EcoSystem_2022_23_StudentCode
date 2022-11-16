@@ -20,11 +20,11 @@ class FoodPS1 {
                 this.particles.splice(i, 1); // remove this particle
             }
         }
-        if(++this.count%111 === 0 &&  this.particles.length < 15){
+        if (++this.count % 111 === 0 && this.particles.length < 15) {
             this.addParticle(this.loc, this.ctx); // new particle each time
             this.count = 0;
         }
-        
+
     }
 }
 

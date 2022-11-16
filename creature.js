@@ -1,14 +1,12 @@
 class Creature {//extends Entity {
-   constructor(loc, vel, sz, wrld) {
-      //super(loc, vel, sz, wrld)
-      //mover properties
+   constructor(loc, vel, scl, ctx, wrld) {
       this.loc = loc;
       this.vel = vel;
       this.acc = new JSVector(0, 0);
       this.clr = this.getRandomColor();
-      this.scl = 9;
+      this.scl = scl;
       this.maxSpeed = .1;
-      this.ctx = wrld.ctxMain;
+      this.ctx = ctx;
       this.wWidth = wrld.dims.width;
       this.wHeight = wrld.dims.height;
       this.statBlock = {//  status block 
