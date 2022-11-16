@@ -127,16 +127,25 @@ this.entities = [];
             for(let j = 0; j < this.blocks.length; j++) {
                 let block = this.blocks[j];
                 // if the location of this entity falls withing this block
-                // set entity.block to block and break this inner loop
+                if (this.entities[i].loc.x >= this.blocks[j].left && this.entities[i].x < (this.blocks[j].left + this.blocks[j].width) && this.entities[i].loc.y >= this.blocks[j].top && this.entities[i].y < (this.blocks[j].top + this.blocks[j].height)) {
+                  // set entity.block to block and break this inner loop
+                  entity.block = this.block[j];
+                }
+                
             }
         }
     // check the distance from every entity to every other entity
     // that is in the same block
+    for (let i = 0; i < this.blocks.length; i++) {
+      for (let j = 0; j < this.entities[i].length; j++) {
+        //check dist
+      }
     }
-
-    else {      // !this.performace
-        // check the distance from every entity to every other entity
-        }
+    }
+    else {      
+      // !this.performace
+      // check the distance from every entity to every other entity
+    }
 
 
 
