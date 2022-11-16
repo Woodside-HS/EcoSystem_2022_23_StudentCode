@@ -70,7 +70,7 @@ attract(fsystem){
     console.log("Creature: " + this.loc);
     this.acc = JSVector.subGetNew(fsystem.f_List[index].loc, this.loc);
     this.acc.normalize();
-    this.acc.multiply(0.05);
+    this.acc.multiply(0.2);
     }
 }
 
