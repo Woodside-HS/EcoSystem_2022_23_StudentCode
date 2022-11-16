@@ -17,7 +17,7 @@ class World {
     }
 
     // performance
-    this.performance = false;   // set true to enable performance code
+    this.performance = true;   // set true to enable performance code
 
     // divide the dimensions of the world into 12 blocks,
     // each 1000 X 1000
@@ -126,6 +126,8 @@ this.entities = [];
             let entity = this.entities[i];
             for(let j = 0; j < this.blocks.length; j++) {
                 let block = this.blocks[j];
+                if(entity.loc.x >= block.dims.left && entity.loc.x<width && entity.loc.y>= block.dims.top && enti)
+                }
                 // if the location of this entity falls withing this block
                 // set entity.block to block and break this inner loop
             }
@@ -166,7 +168,7 @@ this.entities = [];
 
     // performance  show framerate
     this.ctxMain.font = "40px  bold";
-    this.ctxMain.fillStyle = "white";
+    this.ctxMain.fillStyle = "black";
     let fps = this.framerate + " FPS";  // frames per second
     this.ctxMain.fillText(fps, 20, this.cnvMain.height-50);
   }
