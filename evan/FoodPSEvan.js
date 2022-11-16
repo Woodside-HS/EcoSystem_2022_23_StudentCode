@@ -1,13 +1,13 @@
-class FoodPS{
-    constructor(startLoc, startVel, size){
-        this.loc = new JSVector(x, y);
+class FoodPSEvan{
+    constructor(){
+        this.loc = new JSVector(0,0);
         this.vel = new JSVector(Math.random() * 4 - 2, Math.random() * 4 - 2)
-        this.rad = 20;
+        this.rad = 10;
         this.clr = "#1b8f3a";
         this.particles = [];
-        this.loadParticles(10);
+        this.loadParticles(5);
     }
-
+    
 
     update() {
         for (let i = this.particles.length - 1; i > 0; i--) {
@@ -46,7 +46,7 @@ class FoodPS{
 
     loadParticles(n) {
         for(let i = 0; i < n; i++) {
-          this.particles[i] = new Particle(this.loc.x, this.loc.y, 10, this.clr, this.ctx1, this.ctx2)
+          this.particles[i] = new FoodEvan(this.loc.x, this.loc.y, 10, this.clr, this.ctx1, this.ctx2)
         }
     }
 

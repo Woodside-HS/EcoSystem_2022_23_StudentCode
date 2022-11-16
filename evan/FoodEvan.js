@@ -1,16 +1,15 @@
-class Food4 extends Entity {
+class FoodEvan extends Entity {
     // properties
-    constructor(loc, vel, sz, wrld) {
+    constructor(locX, locY, vel, sz, wrld) {
         super(loc, vel, sz, wrld);
-        this.loc = loc;
-        this.vel = vel;
+        this.loc = new JSVector(locX, locY);
+        this.vel = new JSVector();
         this.world = wrld;
         this.size = sz;
         this.alive = true;
         this.clr = clr;
         this.health = Math.random() * (10000-1000) + 1000;
         
-    
     }
    
     run() {
@@ -55,5 +54,4 @@ class Food4 extends Entity {
         let index = Math.floor(Math.random() * colors.length);
         return colors[index];
     }
-
 }
