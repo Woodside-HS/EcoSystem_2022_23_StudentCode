@@ -10,11 +10,16 @@ class Creature2 {
     run() {
         this.render();
         this.update();
-        this.eat();
     }
 
     update() {
         this.loc.add(this.vel);
+        for(let i = 0;i<world.entities.length;i++)
+            this.acc = JSVector.subGetNew(world.entities[3].loc,this.loc);
+            this.acc.normalize();
+            this.acc.multiply(.5);
+            this.vel.limit(3);
+            this.vel.add(this.acc);
     }
 
     render() {
@@ -32,9 +37,5 @@ class Creature2 {
         this.ctx.stroke()
         this.ctx.closePath();
         this.ctx.restore();
-    }
-
-    eat() {
-        for(let i = 0;i<)
     }
 }
