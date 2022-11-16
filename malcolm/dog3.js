@@ -10,7 +10,7 @@ class Dog3 {
     this.vel = new JSVector(this.vX, this.vY);
     this.hp = 100;
     this.isDead = false;
-    this.lifespan = 10;
+    this.lifespan = Math.random() * (100 - 10) + 10;
     this.count = 0;
     this.angle = 0; // anlge of the dog
   }
