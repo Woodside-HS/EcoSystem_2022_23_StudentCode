@@ -95,7 +95,7 @@ class World {
 
 this.entities = [];
     // performance -- change the number of entities to see the effect on framerate
-    this.loadEntities(100000, this.ctxMain, this.dims.width, this.dims.height);
+    this.loadEntities(1000, this.ctxMain, this.dims.width, this.dims.height);
 
     // performance
     this.framerate = 60;
@@ -116,27 +116,37 @@ this.entities = [];
     // performance
     this.framecount++;
 
-    // performance
+
+  // performance
     // when performance boolean is true, does the framerate improve
     // when we only check the distance between entities when they
     // both fall within the same block
     if(this.performance) {  // preformance on
-        // give every entity a reference to the block that contains it
-        for(let i = 0; i < this.entities.length; i++){
-            let entity = this.entities[i];
-            for(let j = 0; j < this.blocks.length; j++) {
-                let block = this.blocks[j];
-                // if the location of this entity falls withing this block
-                // set entity.block to block and break this inner loop
-            }
-        }
-    // check the distance from every entity to every other entity
-    // that is in the same block
+      // give every entity a reference to the block that contains it
+      for(let i = 0; i < this.entities.length; i++){
+          let entity = this.entities[i];
+          for(let j = 0; j < this.blocks.length; j++) {
+              let block = this.blocks[j];
+              // if the location of this entity falls withing this block
+              if((entity.loc.x > block.left && entity.loc.x <block.left + block.width) && (entity.loc.y > block.top && entity.loc.y < block.top + block.height)){ 
+                entity.block = block;
+                break;
+              }
+          }
+      }
+    for(let i = 0; i<this.entities.length; i++){
+      if(this.entities[i].block = this.block){
+        let test = this.loc.distance(this.entities[i].loc);
+      }
     }
+  } //end performance if
 
-    else {      // !this.performace
-        // check the distance from every entity to every other entity
-        }
+  else {      // !this.performace
+    for(let i = 0; i<this.entities.length; i++){
+        let test1 = this.loc.distance(this.entities[i].loc); //distance;
+      }
+      } //end else statement
+
 
 
 
