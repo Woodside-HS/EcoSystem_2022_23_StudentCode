@@ -17,7 +17,7 @@ class World {
     }
 
     // performance
-    this.performance = false;   // set true to enable performance code
+    this.performance = true;   // set true to enable performance code
 
     // divide the dimensions of the world into 12 blocks,
     // each 1000 X 1000
@@ -95,7 +95,7 @@ class World {
 
 this.entities = [];
     // performance -- change the number of entities to see the effect on framerate
-    this.loadEntities(100000, this.ctxMain, this.dims.width, this.dims.height);
+    this.loadEntities(1000, this.ctxMain, this.dims.width, this.dims.height);
 
     // performance
     this.framerate = 60;
@@ -127,24 +127,36 @@ this.entities = [];
             for(let j = 0; j < this.blocks.length; j++) {
                 let block = this.blocks[j];
                 // if the location of this entity falls withing this block
-                if (this.entities[i].loc.x >= this.blocks[j].left && this.entities[i].x < (this.blocks[j].left + this.blocks[j].width) && this.entities[i].loc.y >= this.blocks[j].top && this.entities[i].y < (this.blocks[j].top + this.blocks[j].height)) {
+                if (entity.loc.x >= this.blocks[j].left && entity.loc.x < (this.blocks[j].left + this.blocks[j].width) && entity.loc.y >= this.blocks[j].top && entity.loc.y < (this.blocks[j].top + this.blocks[j].height)) {
                   // set entity.block to block and break this inner loop
-                  entity.block = this.block[j];
+                  entity.block = this.blocks[j];
                 }
-                
             }
         }
     // check the distance from every entity to every other entity
     // that is in the same block
     for (let i = 0; i < this.blocks.length; i++) {
       for (let j = 0; j < this.entities[i].length; j++) {
-        //check dist
+        if(i != j) {
+          for (let index = 0; index < 100; index++) {
+            var dist = this.entities[i].loc.distance(this.entities[j].loc);
+          }
+        }
       }
     }
     }
     else {      
       // !this.performace
       // check the distance from every entity to every other entity
+      for (let i = 0; i < this.entities.length; i++) {
+        for(let j = 0; j < this.entities.length; j++) {
+          if(i != j) {
+            for (let index = 0; index < 100; index++) {
+              var dist = this.entities[i].loc.distance(this.entities[j].loc);
+            }
+          }
+        }
+      }
     }
 
 
