@@ -23,6 +23,20 @@ class creatureT {
         this.eatYummy();
         this.update();
         this.render();
+        this.NrgDrain();
+    }
+    NrgDrain() {
+        this.statBlock.Nrg--;
+        if(this.statBlock.Nrg>1000){
+            this.statBlock.Nrg = 1000;
+        }
+        if(this.statBlock.Nrg<=0){
+            for(let i = world.entities.length; i>0;i--){
+                if(this == world.entities[i]){
+                    world.entities.splice(i,1);
+                }
+            }
+        }
     }
     update() {
         this.vel.add(this.acc)
@@ -69,7 +83,7 @@ class creatureT {
         }
     }
     consume(particleSysNum, particleNum) {
-        this.statBlock.Nrg--;
+        this.statBlock.Nrg++;
         world.entities[particleSysNum].yummy[particleNum].lifeSpan--;
     }
     attract(food) {
@@ -81,6 +95,7 @@ class creatureT {
     render() {
         let c = this.ctx;
         c.beginPath();
+        c.fillText(this.statBlock.Nrg,this.loc.x,this.loc.y-this.size);
         c.arc(this.loc.x, this.loc.y, this.size, 0, Math.PI * 2);
         c.fillStyle = "black";
         c.fill();

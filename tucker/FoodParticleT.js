@@ -29,8 +29,8 @@ class FoodParticleT {
         ctx.font = '12px serif';
         ctx.fillText(this.lifeSpan,this.loc.x,this.loc.y);
         ctx.arc(this.loc.x,this.loc.y,this.rad,0,Math.PI*2);
-        ctx.fillStyle = this.getRandomColor();
-        ctx.strokeStyle = this.getRandomColor();
+        ctx.fillStyle = this.clr;
+        ctx.strokeStyle = this.clr;
         ctx.fill();
         ctx.stroke();
     }

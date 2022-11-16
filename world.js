@@ -83,12 +83,12 @@ class World {
     //   );
     // }
     //Tucker's Food Particle System Lab LMAO SMH my 4head
-    for(let i = 0; i < 5; i++){
+    for(let i = 0; i < 50; i++){
       //let locT = new JSVector(Math.random() * (this.dims.width-20) - (this.dims.width / 2 - 10),Math.random() * (this.dims.height-20) - (this.dims.height / 2 - 10));
       let locT = new JSVector(Math.random()*this.dims.width -(this.dims.width/2),Math.random()*this.dims.height -(this.dims.height/2));
       this.entities.push(new FoodParticleSystemT(locT,10,this))
     }
-    for(let i =0; i< 3; i++){
+    for(let i =0; i< 30; i++){
       let locT = new JSVector(Math.random()*this.dims.width -(this.dims.width/2),Math.random()*this.dims.height -(this.dims.height/2));
       let velT = new JSVector(Math.random()*4-2,Math.random()*4-2);
       this.entities.push(new creatureT(locT,velT,10,this.ctxMain));
