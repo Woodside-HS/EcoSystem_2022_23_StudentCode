@@ -11,7 +11,7 @@ class FoodSystem1 extends Entity {
     }
     //  methods
     run() {
-        if(this.addParticle % 30 == 0){
+        if(this.addParticle % 120 == 0){
         this.f_List.push(new Food1(this.loc, this.death, this.ctx, this.size));
         }
         this.addParticle++;

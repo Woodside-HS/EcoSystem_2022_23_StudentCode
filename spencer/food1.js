@@ -1,14 +1,15 @@
 class Food1 {
     
     constructor(start, death, ctx, sz) { //start will accept emitter.
-    this.loc = new JSVector(start.x, start.y); //recode with JSVector
+    this.loc = new JSVector(start.x + Math.random()*200-100, start.y + Math.random()*200-100); //recode with JSVector
     this.vel = new JSVector(Math.random()*0.5-0.25, Math.random()*0.5-0.25);
     this.acc = 0;
     this.sz = sz; //5
-    this.life = Math.random()*30*death+10;
+    this.life = Math.random()*30*death+30;
     this.isDead = false;
     this.ctx = ctx;
     this.clr = this.getRandomColor();
+    this.dying = false;
   }
   
   run() {
@@ -39,6 +40,15 @@ class Food1 {
     if(this.loc.y>world.dims.bottom || this.loc.y<world.dims.top || this.loc.x>world.dims.right || this.loc.x<world.dims.left){
       this.isDead = true;
     }
+  }
+
+  die(){
+    this.clr = "black";
+    if(!this.dying){
+      this.life = this.sz;
+      this.dying = true;
+    }
+    this.sz = this.life;
   }
 
   getRandomColor() {
