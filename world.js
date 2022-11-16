@@ -17,7 +17,7 @@ class World {
     }
 
     // performance
-    this.performance = false;   // set true to enable performance code
+    this.performance = true;   // set true to enable performance code
 
     // divide the dimensions of the world into 12 blocks,
     // each 1000 X 1000
@@ -166,7 +166,7 @@ this.entities = [];
 
     // performance  show framerate
     this.ctxMain.font = "40px  bold";
-    this.ctxMain.fillStyle = "white";
+    this.ctxMain.fillStyle = "red";
     let fps = this.framerate + " FPS";  // frames per second
     this.ctxMain.fillText(fps, 20, this.cnvMain.height-50);
   }
