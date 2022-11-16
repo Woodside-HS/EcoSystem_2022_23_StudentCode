@@ -51,18 +51,23 @@ class creatureT {
             if (world.entities[i].id == "fdPrtcl") {//checks to make sure it is a food particle system
                 //below eats the particle
                 let fPSys = world.entities[i].yummy;
-                for (let i = 0; i < fPSys.length; i++) {
-                    let dis = this.loc.distanceSquared(fPSys[i].loc);
+                for (let j = 0; j < fPSys.length; j++) {
+                    let dis = this.loc.distanceSquared(fPSys[j].loc);
                     if (dis <= eatDist) {
                         this.ctx.beginPath();
                         this.ctx.moveTo(this.loc.x,this.loc.y);
-                        this.ctx.lineTo(fPSys[i].loc.x,fPSys[i].loc.y);
+                        this.ctx.lineTo(fPSys[j].loc.x,fPSys[j].loc.y);
                         this.ctx.stroke();
-                        this.attract(fPSys[i].loc);
+                        this.attract(fPSys[j].loc);
+                        this.consume(i,j);
                     }
                 }
             }
         }
+    }
+    consume(particleSysNum,particleNum){
+        this.statBlock.Nrg--;
+        world.entities[particleSysNum].yummy[particleNum].lifeSpan--;
     }
     attract(food) {
         let tempAcc = JSVector.subGetNew(food, this.loc);

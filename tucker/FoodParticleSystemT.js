@@ -10,11 +10,16 @@ class FoodParticleSystemT {
         this.clr = this.getRandomColor();
         this.yummy = [];
         this.id = "fdPrtcl";
+        this.spawnInterval = false;
     }
     //  methods
     run() {
-        this.yummy.push(new FoodParticleT(this.loc, new JSVector(Math.random() * 5 - 2.5, Math.random() * 5 - 2.5 ), this.getRandomColor(), 5, Math.random() * 100 + 100));
-
+        if(this.spawnInterval){
+            this.yummy.push(new FoodParticleT(this.loc, new JSVector(Math.random() * 5 - 2.5, Math.random() * 5 - 2.5 ), this.getRandomColor(), 5, Math.random() * 100 + 100));
+            this.spawnInterval = false;
+        } else {
+            this.spawnInterval = true;
+        }
         for (let i = this.yummy.length - 1; i >= 0; i--) {
             this.yummy[i].run();
             if (this.yummy[i].isDead) {//splices out dead food

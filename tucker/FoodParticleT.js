@@ -8,6 +8,7 @@ class FoodParticleT {
         this.rad = rad;
         this.isDead = false;
         this.lifeSpan = dday;
+        Math.floor(this.lifeSpan);
         
     }
     run() {
@@ -17,6 +18,7 @@ class FoodParticleT {
         this.update();
         this.render();
         this.lifeSpan--;
+        Math.floor(this.lifeSpan);
     }
     update(){
         this.loc.add(this.vel);
@@ -24,6 +26,8 @@ class FoodParticleT {
     render(){
         let ctx = world.ctxMain;
         ctx.beginPath();
+        ctx.font = '12px serif';
+        ctx.fillText(this.lifeSpan,this.loc.x,this.loc.y);
         ctx.arc(this.loc.x,this.loc.y,this.rad,0,Math.PI*2);
         ctx.fillStyle = this.getRandomColor();
         ctx.strokeStyle = this.getRandomColor();
