@@ -15,12 +15,132 @@ class World {
       width: 4000,
       height: 3000
     }
-    this.entities = [];
-    this.loadEntities(90, this.ctxMain, this.dims.width, this.dims.height);
+
+    // performance
+    this.performance = false;   // set true to enable performance code
+
+    // divide the dimensions of the world into 12 blocks,
+    // each 1000 X 1000
+    this.blocks = [
+        {
+        top: -1500,
+        left: -2000,
+        width: 1000,
+        height: 1000
+        },
+        {
+        top: -1500,
+        left: -1000,
+        width: 1000,
+        height: 1000
+        },        {
+        top: -1500,
+        left: 0,
+        width: 1000,
+        height: 1000
+        },        {
+        top: -1500,
+        left: 1000,
+        width: 1000,
+        height: 1000
+        },        {
+        top: -500,
+        left: -2000,
+        width: 1000,
+        height: 1000
+        },
+        {
+        top: -500,
+        left: -1000,
+        width: 1000,
+        height: 1000
+        },
+        {
+        top: -500,
+        left: 0,
+        width: 1000,
+        height: 1000
+        },
+        {
+        top: -500,
+        left: 1000,
+        width: 1000,
+        height: 1000
+        },
+        {
+        top: 500,
+        left: -2000,
+        width: 1000,
+        height: 1000
+        },
+        {
+        top: 500,
+        left: -1000,
+        width: 1000,
+        height: 1000
+        },
+        {
+        top: 500,
+        left: 0,
+        width: 1000,
+        height: 1000
+        },
+        {
+        top: 500,
+        left: 1000,
+        width: 1000,
+        height: 1000
+        },
+    ];  // this.blocks
+
+this.entities = [];
+    // performance -- change the number of entities to see the effect on framerate
+    this.loadEntities(100000, this.ctxMain, this.dims.width, this.dims.height);
+
+    // performance
+    this.framerate = 60;
+    this.framecount = 0;
+    // every second (250 ms), see how many times that world.run() has
+    // executed.
+    setInterval(
+        function() {
+            world.framerate = world.framecount;
+            world.framecount = 0;
+        }, 1000
+    )
 
   }
 
   run() {
+
+    // performance
+    this.framecount++;
+
+    // performance
+    // when performance boolean is true, does the framerate improve
+    // when we only check the distance between entities when they
+    // both fall within the same block
+    if(this.performance) {  // preformance on
+        // give every entity a reference to the block that contains it
+        for(let i = 0; i < this.entities.length; i++){
+            let entity = this.entities[i];
+            for(let j = 0; j < this.blocks.length; j++) {
+                let block = this.blocks[j];
+                // if the location of this entity falls withing this block
+                // set entity.block to block and break this inner loop
+            }
+        }
+    // check the distance from every entity to every other entity
+    // that is in the same block
+    }
+
+    else {      // !this.performace
+        // check the distance from every entity to every other entity
+        }
+
+
+
+
     // run the world in animation
     this.ctxMain.fillStyle = 'rgb(0, 0, 55)';//  color of outer border on Main canvas
     this.ctxMain.clearRect(0, 0, this.cnvMain.width, this.cnvMain.height);//  clear the canvas
@@ -43,6 +163,12 @@ class World {
       this.ctxMain.strokeRect(this.dims.left, this.dims.top, this.dims.width, this.dims.height);
       this.ctxMain.stroke();
     this.ctxMain.restore();
+
+    // performance  show framerate
+    this.ctxMain.font = "40px  bold";
+    this.ctxMain.fillStyle = "white";
+    let fps = this.framerate + " FPS";  // frames per second
+    this.ctxMain.fillText(fps, 20, this.cnvMain.height-50);
   }
   //Load mover array
   loadEntities(numEntities, ctx1, w, h) {
@@ -86,11 +212,3 @@ class World {
 
 
 }//++++++++++++++++++++++++++++++  end world constructor
-
-
-
-
-
-
-
-
