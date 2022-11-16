@@ -8,7 +8,6 @@ class creatureT {
         //drawing vectors
         this.size = obesity;
         this.ctx = wrldCTX;
-
         //statblock, has info the keeps the creature alive
         this.statBlock = {
             Hp: 1000,
@@ -16,7 +15,7 @@ class creatureT {
             PredNature: 5,
             FlmBrth: 50,
             LMAOamIdeadHaHaYesIAm: false,
-            eyeSight: 50
+            eyeSight: 100
         }
     }
     run() {
@@ -31,17 +30,17 @@ class creatureT {
         this.loc.add(this.vel)
     }
     checkBorder() {
-        if (this.loc.x > world.cnvMain.width) {
+        if (this.loc.x > world.dims.width) {
             this.loc.x = 0
         }
         if (this.loc.x < 0) {
-            this.loc.x = world.cnvMain.width;
+            this.loc.x = world.dims.width;
         }
-        if (this.loc.y > world.cnvMain.height) {
+        if (this.loc.y > world.dims.height) {
             this.loc.y = 0;
         }
         if (this.loc.y < 0) {
-            this.loc.y = world.cnvMain.height;
+            this.loc.y = world.dims.height;
         }
     }
     eatYummy() {
@@ -54,18 +53,22 @@ class creatureT {
                 for (let j = 0; j < fPSys.length; j++) {
                     let dis = this.loc.distanceSquared(fPSys[j].loc);
                     if (dis <= eatDist) {
-                        this.ctx.beginPath();
-                        this.ctx.moveTo(this.loc.x,this.loc.y);
-                        this.ctx.lineTo(fPSys[j].loc.x,fPSys[j].loc.y);
-                        this.ctx.stroke();
                         this.attract(fPSys[j].loc);
-                        this.consume(i,j);
+                        if (dis <= eatDist / 2) {
+                            this.ctx.beginPath();
+                            this.ctx.moveTo(this.loc.x, this.loc.y);
+                            this.ctx.lineTo(fPSys[j].loc.x, fPSys[j].loc.y);
+                            this.ctx.stroke();
+                            this.consume(i, j);
+                        }
+
+
                     }
                 }
             }
         }
     }
-    consume(particleSysNum,particleNum){
+    consume(particleSysNum, particleNum) {
         this.statBlock.Nrg--;
         world.entities[particleSysNum].yummy[particleNum].lifeSpan--;
     }

@@ -10,15 +10,15 @@ class FoodParticleSystemT {
         this.clr = this.getRandomColor();
         this.yummy = [];
         this.id = "fdPrtcl";
-        this.spawnInterval = false;
+        this.spawnInterval = 0;
     }
     //  methods
     run() {
-        if(this.spawnInterval){
-            this.yummy.push(new FoodParticleT(this.loc, new JSVector(Math.random() * 5 - 2.5, Math.random() * 5 - 2.5 ), this.getRandomColor(), 5, Math.random() * 100 + 100));
-            this.spawnInterval = false;
+        if(this.spawnInterval >= 5){
+            this.yummy.push(new FoodParticleT(this.loc, new JSVector(Math.random() * 2.5 - 1.25, Math.random() *2.5 - 1.25 ), this.getRandomColor(), 5, Math.random() * 100 + 100));
+            this.spawnInterval = 0;
         } else {
-            this.spawnInterval = true;
+            this.spawnInterval++;
         }
         for (let i = this.yummy.length - 1; i >= 0; i--) {
             this.yummy[i].run();
