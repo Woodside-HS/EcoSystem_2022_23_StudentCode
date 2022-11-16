@@ -10,7 +10,7 @@ class Dog3 {
     this.vel = new JSVector(this.vX, this.vY);
     this.hp = 100;
     this.isDead = false;
-    this.lifespan = 50;
+    this.lifespan = 10;
     this.count = 0;
     this.angle = 0; // anlge of the dog
   }
@@ -57,7 +57,8 @@ class Dog3 {
         this.vel.limit(2);
         if (dist < 10) {
           particles.vel = new JSVector(0, 0);
-          this.vel = new JSVector(0, 0);
+          // this.vel = new JSVector(0, 0);
+          this.vel.multiply(0.1); // this makes it so the angle dest change when it is "eating" the particals
           // particles.hp--;
           this.hp = this.hp + particles.hp--;
           if (particles.isDead == true || diff > 10) {

@@ -10,7 +10,6 @@ class Food3 {
   }
   //  methods
   loadParticles(n) {
-    // loads particles
     for (let i = 0; i < n; i++) {
       this.addParticles();
     }
@@ -18,6 +17,9 @@ class Food3 {
 
   addParticles() {
     this.particles.push(new Particle(this.loc, this.ctx));
+    if (this.particles.length < 3) {
+      this.particles.push(new Particle(this.loc, this.ctx));
+    }
     console.log("there are " + this.particles.length + " particals");
   }
 

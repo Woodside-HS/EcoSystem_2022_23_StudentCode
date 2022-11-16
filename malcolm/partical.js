@@ -1,12 +1,12 @@
 class Particle {
   constructor(loc, wrld) {
     // this.loc = loc;
-    let x = Math.random() * (800 - 0) + -0;
-    let y = Math.random() * (600 - 0) + -0;
+    let x = Math.random() * (700 - 0) + -0;
+    let y = Math.random() * (500 - 0) + -0;
     this.loc = new JSVector(x, y);
-    let vX = Math.random() * (1 - -1) + -1;
-    let vY = Math.random() * (1 - -1) + -1;
-    this.vel = new JSVector(vX, vY);
+    this.vX = Math.random() * (1 - -1) + -1;
+    this.vY = Math.random() * (1 - -1) + -1;
+    this.vel = new JSVector(this.vX, this.vY);
 
     this.size = 1;
     this.maxSize = 20;
@@ -43,7 +43,6 @@ class Particle {
   update() {
     // this.vel.add(this.flock());
     this.loc.add(this.vel);
-    // console.log(this.flock());
     this.size = (this.hp * this.maxSize) / 100; // sets the size compared to the hp
     if (this.size <= 1) {
       this.size = 1;
@@ -67,9 +66,7 @@ class Particle {
     let sum = new JSVector(0, 0);
     let steer = new JSVector(0, 0);
     let cohesionForce = new JSVector(0, 0);
-    // let world.entities[1900].particles[] = particles;
     let particles = world.entities[1900].particles;
-    // console.log(world.entities[1900].particles);
 
     for (let i = 0; i < particles.length; i++) {
       let other = particles[i];
@@ -86,7 +83,6 @@ class Particle {
         let steer = JSVector.subGetNew(sum, this.vel);
         steer.limit(this.maxForce);
         cohesionForce = steer;
-        // console.log(steer);
       }
     }
     return cohesionForce;
