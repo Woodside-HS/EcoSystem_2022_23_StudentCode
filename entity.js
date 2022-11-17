@@ -35,11 +35,8 @@ class Entity {
     this.closest = 1000000;
     this.clsIndex = -1;
     for(let i = 0; i < this.ents.length; i++){
-
        if(this !== this.ents[i] && this.ents[i].row === this.row && this.ents[i].col === this.col){
-     
         let d = this.loc.distanceSquared(this.ents[i].loc);
-        console.log("Inside if");
         if(d <  this.closest){
           this.closest = d;
           this.clsIndex = i;
@@ -79,8 +76,8 @@ class Entity {
 
     if( this.clsIndex >= 0){
       ctx.beginPath();
-      //ctx.stroke = "#AAAAAA";
-      ctx.lineWidth  = 3;
+      ctx.strokeStyle = "#FF55DD";
+      ctx.lineWidth  = 1;
       ctx.moveTo(this.loc.x, this.loc.y);
       ctx.lineTo(this.ents[this.clsIndex].loc.x, this.ents[this.clsIndex].loc.y );
       ctx.stroke();
@@ -90,7 +87,7 @@ class Entity {
   getRandomColor() {
     //  List of hex color values for movers
     let colors = [
-      "#FF8811",
+      "#9922AA",
     ];
     let index = Math.floor(Math.random() * colors.length);
     return colors[index];

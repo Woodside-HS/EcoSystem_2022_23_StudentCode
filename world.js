@@ -30,7 +30,7 @@ class World {
 
     this.entities = [];
     // performance -- change the number of entities to see the effect on framerate
-    this.loadEntities(1000, this.ctxMain, this.dims.width, this.dims.height);
+    this.loadEntities(5000, this.ctxMain, this.dims.width, this.dims.height);
 
     // performance
     this.framerate = 60;
