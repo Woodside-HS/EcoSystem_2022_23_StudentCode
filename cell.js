@@ -13,7 +13,7 @@ class Cell {
 
     render() {
         let ctx = this.ctx;
-        ctx.strokeStyle = "lightblue";
+        ctx.strokeStyle = "rgba(0, 140, 240, 1)";
         ctx.lineWidth = 2.5;
         ctx.beginPath();
         ctx.rect(this.loc.x, this.loc.y, this.width, this.height);

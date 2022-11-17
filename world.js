@@ -16,8 +16,8 @@ class World {
       height: 3000
     }
 
-    this.numRows = 15;
-    this.numCols = 20;
+    this.numRows = 6;
+    this.numCols = 8;
     this.rowHeight = this.dims.height / this.numRows;
     this.colWidth = this.dims.width / this.numCols;
     this.grid = [];
@@ -50,61 +50,35 @@ class World {
   run() {
     // performance
     this.framecount++;
-
-    // performance
-    // when performance boolean is true, does the framerate improve
-    // when we only check the distance between entities when they
-    // both fall within the same block
-    // if(this.performance) {  // preformance on
-    //     // give every entity a reference to the block that contains it
-    //     for(let i = 0; i < this.entities.length; i++){
-    //         let entity = this.entities[i];
-    //         for(let j = 0; j < this.blocks.length; j++) {
-    //             let block = this.blocks[j];
-    //             // if the location of this entity falls withing this block
-    //             // set entity.block to block and break this inner loop
-    //         }
-    //     }
-    // // check the distance from every entity to every other entity
-    // // that is in the same block
-    // }
-
-    // else {      // !this.performace
-    //     // check the distance from every entity to every other entity
-    //     }
-
-
-
-
     // run the world in animation
     this.ctxMain.fillStyle = 'rgb(0, 0, 55)';//  color of outer border on Main canvas
     this.ctxMain.clearRect(0, 0, this.cnvMain.width, this.cnvMain.height);//  clear the canvas
     // //+++++++++++++++++++++++++++ Draw all entites
-
     this.ctxMain.save();
 
     //  move the main canvas inside of the world
     this.ctxMain.translate(-this.cnvMainLoc.x, -this.cnvMainLoc.y);
+    //  draw all of the cells
     for (let row = 0; row < this.numRows; row++) {
       for (let col = 0; col < this.numCols; col++) {
         this.grid[row][col].render();
       }
     }
-      for (let i = 0; i < this.entities.length; i++) {//  All food and creatures
-        this.entities[i].run();
-      }
+    //  draw the entities
+    for (let i = 0; i < this.entities.length; i++) {//  All food and creatures
+      this.entities[i].run();
+    }
     this.ctxMain.restore();
 
     // // translate cnvMain according to the location of the canvas in the world
     this.ctxMain.save();
     this.ctxMain.translate(this.cnvMainLoc.x * (-1), this.cnvMainLoc.y * (-1));
     //bounds of the world in cnvMain
-    this.ctxMain.strokeStyle = "rgba(0, 255, 0, 1)"
+    this.ctxMain.strokeStyle = "rgba(0, 140, 240, 1)"
     this.ctxMain.beginPath();
     this.ctxMain.lineWidth = 12;
     this.ctxMain.strokeRect(this.dims.left, this.dims.top, this.dims.width, this.dims.height);
     this.ctxMain.stroke();
-
     this.ctxMain.restore();
 
     // // performance  show framerate
@@ -131,29 +105,29 @@ class World {
       this.entities.push(new Entity(loc, vel, diam, this));
     }
     //  generic creatures
-    for (let i = 0; i < 500; i++) {
-      let x = Math.random() * this.dims.width - this.dims.width / 2;
-      let y = Math.random() * this.dims.height - this.dims.height / 2;
-      let loc = new JSVector(x, y);
-      this.entities.push(
-        new Creature(loc,
-          new JSVector(Math.random() * 4 - 2, Math.random() * 4 - 2),
-          6,
-          this)
-      );
-    }
+    // for (let i = 0; i < 500; i++) {
+    //   let x = Math.random() * this.dims.width - this.dims.width / 2;
+    //   let y = Math.random() * this.dims.height - this.dims.height / 2;
+    //   let loc = new JSVector(x, y);
+    //   this.entities.push(
+    //     new Creature(loc,
+    //       new JSVector(Math.random() * 4 - 2, Math.random() * 4 - 2),
+    //       6,
+    //       this)
+    //   );
+    // }
     //  generic food
-    for (let i = 0; i < 500; i++) {
-      let x = Math.random() * (this.dims.width - 20) - (this.dims.width / 2 - 10);
-      let y = Math.random() * (this.dims.height - 20) - (this.dims.height / 2 - 10);
-      let loc = new JSVector(x, y);
-      this.entities.push(
-        new Food(loc,
-          new JSVector(0, 0),
-          6,
-          this)
-      );
-    }
+    // for (let i = 0; i < 500; i++) {
+    //   let x = Math.random() * (this.dims.width - 20) - (this.dims.width / 2 - 10);
+    //   let y = Math.random() * (this.dims.height - 20) - (this.dims.height / 2 - 10);
+    //   let loc = new JSVector(x, y);
+    //   this.entities.push(
+    //     new Food(loc,
+    //       new JSVector(0, 0),
+    //       6,
+    //       this)
+    //   );
+    // }
   }//++++++++++++++++++++++++++++  load entities
 
 

@@ -36,7 +36,8 @@ class Entity {
     this.clsIndex = -1;
     for(let i = 0; i < this.ents.length; i++){
        if(this !== this.ents[i] && this.ents[i].row === this.row && this.ents[i].col === this.col){
-        let d = this.loc.distanceSquared(this.ents[i].loc);
+        //let d = this.loc.distanceSquared(this.ents[i].loc);
+        let d = this.loc.distance(this.ents[i].loc);
         if(d <  this.closest){
           this.closest = d;
           this.clsIndex = i;
