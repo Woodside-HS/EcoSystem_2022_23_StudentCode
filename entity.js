@@ -10,7 +10,7 @@ class Entity {
     this.ctx = wrld.ctxMain;
     this.wWidth = wrld.dims.width;
     this.wHeight = wrld.dims.height;
-  }//++++++++++++++++++++++++++++++++ end Entity constructor
+  } //++++++++++++++++++++++++++++++++ end Entity constructor
 
   //++++++++++++++++++++++++++++++++ Entity methods
   run() {
@@ -26,10 +26,16 @@ class Entity {
   }
 
   checkEdges() {
-    if (this.loc.x >= world.dims.width / 2 || this.loc.x <= -world.dims.width / 2) {
+    if (
+      this.loc.x >= world.dims.width / 2 ||
+      this.loc.x <= -world.dims.width / 2
+    ) {
       this.vel.x *= -1;
     }
-    if (this.loc.y >= world.dims.height / 2 || this.loc.y < -world.dims.height / 2) {
+    if (
+      this.loc.y >= world.dims.height / 2 ||
+      this.loc.y < -world.dims.height / 2
+    ) {
       this.vel.y *= -1;
     }
   }
@@ -45,11 +51,8 @@ class Entity {
 
   getRandomColor() {
     //  List of hex color values for movers
-    let colors = [
-      "#FFFFFF",
-    ];
+    let colors = ["#FFFFFF"];
     let index = Math.floor(Math.random() * colors.length);
     return colors[index];
   }
-
-}//###############################################  end Entity class
+} //###############################################  end Entity class

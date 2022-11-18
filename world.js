@@ -126,19 +126,27 @@ class World {
         for (let j = 0; j < this.blocks.length; j++) {
           let block = this.blocks[j];
           // if the location of this entity falls withing this block
+
           if (
-            entity.loc.x < block.right &&
+            entity.loc.x < block.left + block.width &&
             entity.loc.x > block.left &&
-            entity.loc.y < block.bottom &&
-            entity.loc.y > block.top
+            entity.loc.x < block.top + block.height &&
+            entity.loc.x > block.top
           ) {
             // set entity.block to block and break this inner loop
             entity.block = block;
+            // console.log("in block: " + j);
           }
         }
-        // for(let k = 0; k < this.entities.length; k++) {
-        //   let other = this.entities[k]
-        // }
+        for (let k = 0; k < this.entities.length; k++) {
+          let d_Dist_sq = 1000;
+          if (this.entities[i].block == this.blocks) {
+            let dist = this.loc.distanceSquared(this.entities[i].loc);
+            if (dist < d_Dist_sq) {
+              console.log("helo");
+            }
+          }
+        }
       }
       // check the distance from every entity to every other entity
       // that is in the same block
