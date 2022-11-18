@@ -17,7 +17,7 @@ class World {
     }
 
     // performance
-    this.performance = false;   // set true to enable performance code
+    this.performance = true;   // set true to enable performance code
 
     // divide the dimensions of the world into 12 blocks,
     // each 1000 X 1000
@@ -135,9 +135,9 @@ class World {
       }
       // check the distance from every entity to every other entity
       // that is in the same block
-      for (let i = 0; i < this.blocks.length; i++) {
-        for (let j = 0; j < this.entities[i].length; j++) {
-          if (i != j) {
+      for (let i = 0; i < this.entities.length; i++) {
+        for (let j = 0; j < this.entities.length; j++) {
+          if (this.entities[i].block == this.entities[j].block) {
             for (let index = 0; index < 100; index++) {
               var dist = this.entities[i].loc.distance(this.entities[j].loc);
             }
