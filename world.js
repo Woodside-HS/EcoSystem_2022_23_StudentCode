@@ -16,8 +16,8 @@ class World {
       height: 3000
     }
 
-    this.numRows = 6;
-    this.numCols = 8;
+    this.numRows = 30;
+    this.numCols = 40;
     this.rowHeight = this.dims.height / this.numRows;
     this.colWidth = this.dims.width / this.numCols;
     this.grid = [];
@@ -88,6 +88,7 @@ class World {
     this.ctxMain.fillText(fps, 20, this.cnvMain.height - 105);
     this.ctxMain.fillText("Rows = " + this.numRows, 20, this.cnvMain.height - 130);
     this.ctxMain.fillText("Cols = " + this.numCols, 20, this.cnvMain.height - 155);
+    this.ctxMain.fillText("Ents = " + this.entities.length, 20, this.cnvMain.height - 85);
   }
 
   //Load mover array
