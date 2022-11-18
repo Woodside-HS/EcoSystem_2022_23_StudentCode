@@ -1,7 +1,6 @@
 //All creatures and food items are added to entities array
 
 class World {
-
   //  Commit 1: 221109
   constructor() {
     this.cnvMain = document.getElementById('cnv1');
@@ -15,7 +14,7 @@ class World {
       width: 4000,
       height: 3000
     }
-
+    this.showGrid = true;
     this.numRows = 30;
     this.numCols = 40;
     this.rowHeight = this.dims.height / this.numRows;
@@ -28,9 +27,14 @@ class World {
       }
     }
 
-    this.entities = [];
+    this.entities = {
+      entityB:[],
+      entityO:[],
+      entityP:[],
+      entityG:[]
+    };
     // performance -- change the number of entities to see the effect on framerate
-    this.loadEntities(5000, this.ctxMain, this.dims.width, this.dims.height);
+    this.loadEntities(3000, this.ctxMain, this.dims.width, this.dims.height);
 
     // performance
     this.framerate = 60;
@@ -65,8 +69,20 @@ class World {
       }
     }
     //  draw the entities
-    for (let i = 0; i < this.entities.length; i++) {//  All food and creatures
-      this.entities[i].run();
+    for (let i = 0; i < this.entities.entityB.length; i++) {//  All food and creatures
+      this.entities.entityB[i].run();
+    }
+
+    for (let i = 0; i < this.entities.entityO.length; i++) {//  All food and creatures
+      this.entities.entityO[i].run();
+    }
+
+    for (let i = 0; i < this.entities.entityP.length; i++) {//  All food and creatures
+      this.entities.entityP[i].run();
+    }
+
+    for (let i = 0; i < this.entities.entityG.length; i++) {//  All food and creatures
+      this.entities.entityG[i].run();
     }
     this.ctxMain.restore();
 
@@ -88,13 +104,14 @@ class World {
     this.ctxMain.fillText(fps, 20, this.cnvMain.height - 105);
     this.ctxMain.fillText("Rows = " + this.numRows, 20, this.cnvMain.height - 130);
     this.ctxMain.fillText("Cols = " + this.numCols, 20, this.cnvMain.height - 155);
-    this.ctxMain.fillText("Ents = " + this.entities.length, 20, this.cnvMain.height - 85);
+    let numEnts = this.entities.entityB.length + this.entities.entityP.length + this.entities.entityO.length+ this.entities.entityG.length;
+    this.ctxMain.fillText("Ents = " + numEnts, 20, this.cnvMain.height - 85);
   }
 
   //Load mover array
   loadEntities(numEntities, ctx1, w, h) {
 
-    //  generic entities
+    //  Blue entities
     for (let i = 0; i < numEntities; i++) {
       let diam = 3;
       let x = Math.random() * (this.dims.width - 2 * diam) + diam - this.dims.width / 2;
@@ -103,32 +120,42 @@ class World {
       let dx = Math.random() * 2 - 1;
       let dy = Math.random() * 2 - 1;
       let vel = new JSVector(dx, dy);
-      this.entities.push(new Entity(loc, vel, diam, this));
+      this.entities.entityB.push(new EntityB(loc, vel, diam, this));
     }
-    //  generic creatures
-    // for (let i = 0; i < 500; i++) {
-    //   let x = Math.random() * this.dims.width - this.dims.width / 2;
-    //   let y = Math.random() * this.dims.height - this.dims.height / 2;
-    //   let loc = new JSVector(x, y);
-    //   this.entities.push(
-    //     new Creature(loc,
-    //       new JSVector(Math.random() * 4 - 2, Math.random() * 4 - 2),
-    //       6,
-    //       this)
-    //   );
-    // }
-    //  generic food
-    // for (let i = 0; i < 500; i++) {
-    //   let x = Math.random() * (this.dims.width - 20) - (this.dims.width / 2 - 10);
-    //   let y = Math.random() * (this.dims.height - 20) - (this.dims.height / 2 - 10);
-    //   let loc = new JSVector(x, y);
-    //   this.entities.push(
-    //     new Food(loc,
-    //       new JSVector(0, 0),
-    //       6,
-    //       this)
-    //   );
-    // }
+  //  Orange entities
+    for (let i = 0; i < numEntities; i++) {
+      let diam = 3;
+      let x = Math.random() * (this.dims.width - 2 * diam) + diam - this.dims.width / 2;
+      let y = Math.random() * (this.dims.height - 2 * diam) + diam - this.dims.height / 2;
+      let loc = new JSVector(x, y);
+      let dx = Math.random() * 2 - 1;
+      let dy = Math.random() * 2 - 1;
+      let vel = new JSVector(dx, dy);
+      this.entities.entityO.push(new EntityO(loc, vel, diam, this));
+    }
+  //  Pink entities
+    for (let i = 0; i < numEntities; i++) {
+      let diam = 3;
+      let x = Math.random() * (this.dims.width - 2 * diam) + diam - this.dims.width / 2;
+      let y = Math.random() * (this.dims.height - 2 * diam) + diam - this.dims.height / 2;
+      let loc = new JSVector(x, y);
+      let dx = Math.random() * 2 - 1;
+      let dy = Math.random() * 2 - 1;
+      let vel = new JSVector(dx, dy);
+      this.entities.entityP.push(new EntityP(loc, vel, diam, this));
+    }
+  //  Green entities
+    for (let i = 0; i < numEntities; i++) {
+      let diam = 3;
+      let x = Math.random() * (this.dims.width - 2 * diam) + diam - this.dims.width / 2;
+      let y = Math.random() * (this.dims.height - 2 * diam) + diam - this.dims.height / 2;
+      let loc = new JSVector(x, y);
+      let dx = Math.random() * 2 - 1;
+      let dy = Math.random() * 2 - 1;
+      let vel = new JSVector(dx, dy);
+      this.entities.entityG.push(new EntityG(loc, vel, diam, this));
+    }
+    
   }//++++++++++++++++++++++++++++  load entities
 
 

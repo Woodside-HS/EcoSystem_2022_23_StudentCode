@@ -29,8 +29,12 @@ class Entity {
     this.vel.add(this.acc);
     this.vel.limit(this.maxSpeed);
     this.loc.add(this.vel);
+    
+
     this.row = Math.floor((this.loc.y - this.wrld.dims.top)/this.wrld.rowHeight);
     this.col = Math.floor((this.loc.x - this.wrld.dims.left)/this.wrld.colWidth);
+
+
     //  draw a line to the closest entity in my cell
     this.closest = 1000000;
     this.clsIndex = -1;
@@ -77,7 +81,7 @@ class Entity {
 
     if( this.clsIndex >= 0){
       ctx.beginPath();
-      ctx.strokeStyle = "#FF55DD";
+      ctx.strokeStyle = "#FFFFFF";
       ctx.lineWidth  = 1;
       ctx.moveTo(this.loc.x, this.loc.y);
       ctx.lineTo(this.ents[this.clsIndex].loc.x, this.ents[this.clsIndex].loc.y );
@@ -88,7 +92,7 @@ class Entity {
   getRandomColor() {
     //  List of hex color values for movers
     let colors = [
-      "#9922AA",
+      "#FFFFFF",
     ];
     let index = Math.floor(Math.random() * colors.length);
     return colors[index];

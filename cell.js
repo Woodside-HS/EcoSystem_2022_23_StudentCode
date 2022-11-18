@@ -12,11 +12,14 @@ class Cell {
     }
 
     render() {
-        let ctx = this.ctx;
-        ctx.strokeStyle = "rgba(0, 140, 240, 1)";
-        ctx.lineWidth = 2.5;
-        ctx.beginPath();
-        ctx.rect(this.loc.x, this.loc.y, this.width, this.height);
-        ctx.stroke();
+        if (this.wrld.showGrid) {
+            let ctx = this.ctx;
+            ctx.strokeStyle = "rgba(0, 140, 240, 1)";
+            ctx.lineWidth = 2.5;
+            ctx.beginPath();
+            ctx.rect(this.loc.x, this.loc.y, this.width, this.height);
+            ctx.stroke();
+        }
+
     }
 }//++++++  end cell
