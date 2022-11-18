@@ -15,6 +15,13 @@ class World {
       width: 4000,
       height: 3000
     }
+    //  set up dimensions for cells
+    this.numCols = 100;
+    this.numRows = 100;
+    this.cellWidth = Math.floor(this.dims.width / this.numCols);
+    this.cellHeight = Math.floor(this.dims.height / this.numRows);
+    this.grid = [];
+    this.loadGrid();
     this.entities = [];
     this.loadEntities(90, this.ctxMain, this.dims.width, this.dims.height);
 
@@ -24,25 +31,43 @@ class World {
     // run the world in animation
     this.ctxMain.fillStyle = 'rgb(0, 0, 55)';//  color of outer border on Main canvas
     this.ctxMain.clearRect(0, 0, this.cnvMain.width, this.cnvMain.height);//  clear the canvas
-    //+++++++++++++++++++++++++++ Draw all entites
+    //+++++++++++++++++++++++++++ Draw all entities
     this.ctxMain.save();
-      //  move the main canvas inside of the world
-      this.ctxMain.translate(-this.cnvMainLoc.x, -this.cnvMainLoc.y);
-      for (let i = 0; i < this.entities.length; i++) {//  All food and creatures
-        this.entities[i].run();
+
+    
+    //update and render cells
+    for(let row = 0; row < this.grid.length; row++){
+      for( let col = 0; col < this.grid[row].length; col++){
+          this.grid[col][row].run();
       }
+    }
+    this.ctxMain.translate(-this.cnvMainLoc.x, -this.cnvMainLoc.y);
+    //update and render entities
+    for (let i = 0; i < this.entities.length; i++) {//  All food and creatures
+      this.entities[i].run();
+    }
+
     this.ctxMain.restore();
 
     // translate cnvMain according to the location of the canvas in the world
     this.ctxMain.save();
-      this.ctxMain.translate(this.cnvMainLoc.x * (-1), this.cnvMainLoc.y * (-1));
-       //bounds of the world in cnvMain
-      this.ctxMain.strokeStyle = "rgba(0, 255, 0, 1)"
-      this.ctxMain.beginPath();
-      this.ctxMain.lineWidth = 12;
-      this.ctxMain.strokeRect(this.dims.left, this.dims.top, this.dims.width, this.dims.height);
-      this.ctxMain.stroke();
+    this.ctxMain.translate(this.cnvMainLoc.x * (-1), this.cnvMainLoc.y * (-1));
+    //bounds of the world in cnvMain
+    this.ctxMain.strokeStyle = "rgba(0, 255, 0, 1)"
+    this.ctxMain.beginPath();
+    this.ctxMain.lineWidth = 12;
+    this.ctxMain.strokeRect(this.dims.left, this.dims.top, this.dims.width, this.dims.height);
+    this.ctxMain.stroke();
     this.ctxMain.restore();
+  }
+  //  create a grid of cell objects
+  loadGrid() {
+    for (let i = 0; i < this.numCols; i++) {
+      this.grid[i] = [];
+      for (let j = 0; j < this.numRows; j++) {
+        this.grid.push(new Cell(this, i, j));
+      }
+    }
   }
   //Load mover array
   loadEntities(numEntities, ctx1, w, h) {
@@ -72,11 +97,11 @@ class World {
     }
     //  generic food
     for (let i = 0; i < 500; i++) {
-      let x = Math.random() * (this.dims.width-20) - (this.dims.width / 2 - 10);
-      let y = Math.random() * (this.dims.height-20) - (this.dims.height / 2 - 10);
+      let x = Math.random() * (this.dims.width - 20) - (this.dims.width / 2 - 10);
+      let y = Math.random() * (this.dims.height - 20) - (this.dims.height / 2 - 10);
       let loc = new JSVector(x, y);
       this.entities.push(
-          new Food(loc,
+        new Food(loc,
           new JSVector(0, 0),
           6,
           this)
