@@ -127,19 +127,13 @@ class World {
         for (let j = 0; j < this.blocks.length; j++) {
           let block = this.blocks[j];
           if (entity.loc.x >= block.left && entity.loc.x < (block.left + block.width) && entity.loc.y >= block.top && entity.loc.y < (block.top + block.height)) {
-            entity.block = block;
+           
           }
         }
         // if the location of this entity falls withing this block
         // set entity.block to block and break this inner loop
       }
-      for (let i = 0; i < this.blocks.length; i++) {
-        for (let j = 0; j < this.entities[i].length; j++) {
-          if (i !== j) {
-            let d = this.entities[i].loc.distance(this.entities[j].loc);
-          }
-        }
-      }
+
     }
     // check the distance from every entity to every other entity
     // that is in the same block
@@ -148,9 +142,8 @@ class World {
       // check the distance from every entity to every other entity
       for (let i = 0; i < this.entities.length; i++) {
         for (let j = 0; j < this.entities.length; j++) {
-          if (i !== j) {
             let d = this.entities[i].loc.distance(this.entities[j].loc);
-          }
+          
         }
       }
     }
