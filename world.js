@@ -138,7 +138,8 @@ class World {
             // console.log("in block: " + j);
           }
         }
-        for (let k = 0; k < this.entities.length; k++) {
+        //! $$$$$$$$$$$$$
+        for (let k = 0; k < this.blocks.length; k++) {
           let d_Dist_sq = 1000;
           if (this.entities[i].block == this.blocks) {
             let dist = this.loc.distanceSquared(this.entities[i].loc);
@@ -147,6 +148,19 @@ class World {
             }
           }
         }
+        //! $$$$$$$$$$$$$
+        //! &&&&&&&&&&&
+        // for (let i = 0; i < this.blocks.length; i++) {
+        //   for (let j = 0; j < this.entities[i].length; j++) {
+        //     if (i != j) {
+        //       for (let inedx = 0; inedx < 100; i++) {
+        //         var dist = this.entities[i].loc.distance(this.entities[j].loc);
+        //         console.log(dist);
+        //       }
+        //     }
+        //   }
+        // }
+        //! &&&&&&&&&&&&
       }
       // check the distance from every entity to every other entity
       // that is in the same block
