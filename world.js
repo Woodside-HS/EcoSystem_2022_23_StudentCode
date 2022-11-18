@@ -17,7 +17,7 @@ class World {
     }
 
     // performance
-    this.performance = false;   // set true to enable performance code
+    this.performance = true;   // set true to enable performance code
 
     // divide the dimensions of the world into 12 blocks,
     // each 1000 X 1000
@@ -95,7 +95,7 @@ class World {
 
 this.entities = [];
     // performance -- change the number of entities to see the effect on framerate
-    this.loadEntities(1000, this.ctxMain, this.dims.width, this.dims.height);
+    this.loadEntities(10000, this.ctxMain, this.dims.width, this.dims.height);
 
     // performance
     this.framerate = 60;
@@ -128,24 +128,28 @@ this.entities = [];
           for(let j = 0; j < this.blocks.length; j++) {
               let block = this.blocks[j];
               // if the location of this entity falls withing this block
-              if((entity.loc.x > block.left && entity.loc.x <block.left + block.width) && (entity.loc.y > block.top && entity.loc.y < block.top + block.height)){ 
+              if((entity.loc.x > block.left && entity.loc.x <=block.left + block.width) && (entity.loc.y > block.top && entity.loc.y <= block.top + block.height)){ 
                 entity.block = block;
                 break;
               }
           }
       }
     for(let i = 0; i<this.entities.length; i++){
-      if(this.entities[i].block = this.block){
-        let test = this.loc.distance(this.entities[i].loc);
+      for(let j = 0; j<this.entities.length; j++){
+        if(this.entities[i].block = this.entities[j].block){ //error here
+          let test = this.entities[i].loc.distance(this.entities[j].loc);
+        }
       }
     }
   } //end performance if
 
   else {      // !this.performace
     for(let i = 0; i<this.entities.length; i++){
-        let test1 = this.loc.distance(this.entities[i].loc); //distance;
+      for(let j = 0; j<this.entities.length; j++){
+        let test1 = this.entities[i].loc.distance(this.entities[j].loc);
       }
-      } //end else statement
+    }
+  } //end else statement
 
 
 
