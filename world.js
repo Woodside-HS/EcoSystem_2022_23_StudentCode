@@ -19,6 +19,12 @@ class World {
     this.numCols = 40;
     this.rowHeight = this.dims.height / this.numRows;
     this.colWidth = this.dims.width / this.numCols;
+   //  calculate the rows and cols of the grid that we want to render
+    this.cnvMainRow = (this.cnvMainLoc.y -  this.dims.top)/this.rowHeight;
+    this.cnvMainCol = (this.cnvMainLoc.x -  this.dims.left)/this.colWidth;
+    this.rowRange = Math.floor(this.cnvMain.height/this.rowHeight);
+    this.colRange = Math.floor(this.cnvMain.width/this.colWidth);;
+
     this.grid = [];
     for (let row = 0; row < this.numRows; row++) {
       this.grid[row] = [];
@@ -34,7 +40,7 @@ class World {
       entityG:[]
     };
     // performance -- change the number of entities to see the effect on framerate
-    this.loadEntities(3000, this.ctxMain, this.dims.width, this.dims.height);
+    this.loadEntities(1500, this.ctxMain, this.dims.width, this.dims.height);
 
     // performance
     this.framerate = 60;
