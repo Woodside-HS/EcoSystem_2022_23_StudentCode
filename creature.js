@@ -11,6 +11,7 @@ class Creature extends Entity {
       this.ctx = wrld.ctxMain;
       this.wWidth = wrld.dims.width;
       this.wHeight = wrld.dims.height;
+
       this.statusBlock = {
          searchFood:true,
          searchMate:true,
@@ -18,6 +19,7 @@ class Creature extends Entity {
          sprint:false,
          sleeping:false,
          attack:false,
+         deathProc:false
          
       };
 
@@ -27,12 +29,9 @@ class Creature extends Entity {
          nourishment: 100,
          lifeSpan:30000,//  miliseconds
          age:0,
-         mate:false,
-         pregnant: false,
-         numOffspring:1,
-         predRank: 5, //  predatory rank 0-10
-         herbavor: false,
+         numOffspring:3,
          maxSpeed: 1,
+         maxSprintSpeed: 1,
          scentValue: 100,
          sightValue: 100,
          weight:10,

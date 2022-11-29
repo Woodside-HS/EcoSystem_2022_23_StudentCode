@@ -1,5 +1,4 @@
 //All creatures and food items are added to entities array
-
 class World {
   //  Commit 1: 221109
   constructor() {
@@ -15,8 +14,8 @@ class World {
       height: 3000
     }
     this.showGrid = true;
-    this.numRows = 30;
-    this.numCols = 40;
+    this.numRows = 90;
+    this.numCols = 120;
     this.rowHeight = this.dims.height / this.numRows;
     this.colWidth = this.dims.width / this.numCols;
    //  calculate the rows and cols of the grid that we want to render
@@ -24,7 +23,6 @@ class World {
     this.cnvMainCol = (this.cnvMainLoc.x -  this.dims.left)/this.colWidth;
     this.rowRange = Math.floor(this.cnvMain.height/this.rowHeight);
     this.colRange = Math.floor(this.cnvMain.width/this.colWidth);;
-
     this.grid = [];
     for (let row = 0; row < this.numRows; row++) {
       this.grid[row] = [];
@@ -33,20 +31,30 @@ class World {
       }
     }
 
-    this.entities = {
-      entityB:[],
-      entityO:[],
-      entityP:[],
-      entityG:[]
+    this.creatures = {
+      pred1:[],
+      pred2:[],
+      pred3:[],
+      herb1:[],
+      herb2:[],
+      herb3:[],
+      flocks:[],
+      pSys:[]
+    };
+
+    this.food = {
+      food1:[],
+      food2:[],
+      food3:[],
+      food4:[],
+      pSys1:[],
+      pSys2:[]
     };
     // performance -- change the number of entities to see the effect on framerate
     this.loadEntities(1500, this.ctxMain, this.dims.width, this.dims.height);
-
     // performance
     this.framerate = 60;
     this.framecount = 0;
-    // every second (250 ms), see how many times that world.run() has
-    // executed.
     setInterval(
       function () {
         world.framerate = world.framecount;
@@ -65,42 +73,18 @@ class World {
     this.ctxMain.clearRect(0, 0, this.cnvMain.width, this.cnvMain.height);//  clear the canvas
     // //+++++++++++++++++++++++++++ Draw all entites
     this.ctxMain.save();
-
-    //  move the main canvas inside of the world
-    this.ctxMain.translate(-this.cnvMainLoc.x, -this.cnvMainLoc.y);
-    //  draw all of the cells
-    for (let row = 0; row < this.numRows; row++) {
-      for (let col = 0; col < this.numCols; col++) {
-        this.grid[row][col].render();
-      }
-    }
-    //  draw the entities
-    for (let i = 0; i < this.entities.entityB.length; i++) {//  All food and creatures
-      this.entities.entityB[i].run();
-    }
-
-    for (let i = 0; i < this.entities.entityO.length; i++) {//  All food and creatures
-      this.entities.entityO[i].run();
-    }
-
-    for (let i = 0; i < this.entities.entityP.length; i++) {//  All food and creatures
-      this.entities.entityP[i].run();
-    }
-
-    for (let i = 0; i < this.entities.entityG.length; i++) {//  All food and creatures
-      this.entities.entityG[i].run();
-    }
+    
     this.ctxMain.restore();
 
     // // translate cnvMain according to the location of the canvas in the world
     this.ctxMain.save();
-    this.ctxMain.translate(this.cnvMainLoc.x * (-1), this.cnvMainLoc.y * (-1));
-    //bounds of the world in cnvMain
-    this.ctxMain.strokeStyle = "rgba(0, 140, 240, 1)"
-    this.ctxMain.beginPath();
-    this.ctxMain.lineWidth = 12;
-    this.ctxMain.strokeRect(this.dims.left, this.dims.top, this.dims.width, this.dims.height);
-    this.ctxMain.stroke();
+      this.ctxMain.translate(this.cnvMainLoc.x * (-1), this.cnvMainLoc.y * (-1));
+      //bounds of the world in cnvMain
+      this.ctxMain.strokeStyle = "rgba(0, 140, 240, 1)"
+      this.ctxMain.beginPath();
+      this.ctxMain.lineWidth = 12;
+      this.ctxMain.strokeRect(this.dims.left, this.dims.top, this.dims.width, this.dims.height);
+      this.ctxMain.stroke();
     this.ctxMain.restore();
 
     // // performance  show framerate
@@ -115,54 +99,11 @@ class World {
   }
 
   //Load mover array
-  loadEntities(numEntities, ctx1, w, h) {
+  loadEntities(numEntities, ctx, w, h) {
 
-    //  Blue entities
-    for (let i = 0; i < numEntities; i++) {
-      let diam = 3;
-      let x = Math.random() * (this.dims.width - 2 * diam) + diam - this.dims.width / 2;
-      let y = Math.random() * (this.dims.height - 2 * diam) + diam - this.dims.height / 2;
-      let loc = new JSVector(x, y);
-      let dx = Math.random() * 2 - 1;
-      let dy = Math.random() * 2 - 1;
-      let vel = new JSVector(dx, dy);
-      this.entities.entityB.push(new EntityB(loc, vel, diam, this));
-    }
-  //  Orange entities
-    for (let i = 0; i < numEntities; i++) {
-      let diam = 3;
-      let x = Math.random() * (this.dims.width - 2 * diam) + diam - this.dims.width / 2;
-      let y = Math.random() * (this.dims.height - 2 * diam) + diam - this.dims.height / 2;
-      let loc = new JSVector(x, y);
-      let dx = Math.random() * 2 - 1;
-      let dy = Math.random() * 2 - 1;
-      let vel = new JSVector(dx, dy);
-      this.entities.entityO.push(new EntityO(loc, vel, diam, this));
-    }
-  //  Pink entities
-    for (let i = 0; i < numEntities; i++) {
-      let diam = 3;
-      let x = Math.random() * (this.dims.width - 2 * diam) + diam - this.dims.width / 2;
-      let y = Math.random() * (this.dims.height - 2 * diam) + diam - this.dims.height / 2;
-      let loc = new JSVector(x, y);
-      let dx = Math.random() * 2 - 1;
-      let dy = Math.random() * 2 - 1;
-      let vel = new JSVector(dx, dy);
-      this.entities.entityP.push(new EntityP(loc, vel, diam, this));
-    }
-  //  Green entities
-    for (let i = 0; i < numEntities; i++) {
-      let diam = 3;
-      let x = Math.random() * (this.dims.width - 2 * diam) + diam - this.dims.width / 2;
-      let y = Math.random() * (this.dims.height - 2 * diam) + diam - this.dims.height / 2;
-      let loc = new JSVector(x, y);
-      let dx = Math.random() * 2 - 1;
-      let dy = Math.random() * 2 - 1;
-      let vel = new JSVector(dx, dy);
-      this.entities.entityG.push(new EntityG(loc, vel, diam, this));
-    }
-    
   }//++++++++++++++++++++++++++++  load entities
 
 
 }//++++++++++++++++++++++++++++++  end world constructor
+
+

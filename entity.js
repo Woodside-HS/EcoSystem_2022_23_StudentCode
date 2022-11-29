@@ -29,19 +29,16 @@ class Entity {
     this.vel.add(this.acc);
     this.vel.limit(this.maxSpeed);
     this.loc.add(this.vel);
-    
-
     this.row = Math.floor((this.loc.y - this.wrld.dims.top)/this.wrld.rowHeight);
     this.col = Math.floor((this.loc.x - this.wrld.dims.left)/this.wrld.colWidth);
-
-
     //  draw a line to the closest entity in my cell
     this.closest = 1000000;
     this.clsIndex = -1;
+
     for(let i = 0; i < this.ents.length; i++){
        if(this !== this.ents[i] && this.ents[i].row === this.row && this.ents[i].col === this.col){
-        //let d = this.loc.distanceSquared(this.ents[i].loc);
-        let d = this.loc.distance(this.ents[i].loc);
+        let d = this.loc.distanceSquared(this.ents[i].loc);
+        //let d = this.loc.distance(this.ents[i].loc);
         if(d <  this.closest){
           this.closest = d;
           this.clsIndex = i;
