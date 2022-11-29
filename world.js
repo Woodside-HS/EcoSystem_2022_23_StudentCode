@@ -8,12 +8,12 @@ class World {
     this.ctxMain = this.cnvMain.getContext('2d');
     this.cnvMainLoc = new JSVector(0, 0);
     this.dims = {
-      topx: -1500,
-      leftx: -2000,
-      bottomx: 1500,
-      rightx: 2000,
-      widthx: 4000,
-      heighxt: 3000
+      topy: -1500,
+      lefty: -2000,
+      bottomy: 1500,
+      righty: 2000,
+      widthy: 4000,
+      heighty: 3000
     }
     this.entities = [];
     this.loadEntities(90, this.ctxMain, this.dims.width, this.dims.height);
