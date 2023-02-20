@@ -1,10 +1,9 @@
-class Food extends Entity {
+class Food  {
     // properties
-    constructor(loc, vel, sz, wrld) {
-        super(loc, vel, sz, wrld)
+    constructor(loc, sz, ctx, wrld) {
         this.loc = loc;
         this.clr = this.getRandomColor();
-        this.ctx = wrld.ctxMain;
+        this.ctx = ctx;
         this.size = sz;
         this.wWidth = wrld.dims.width;
         this.wHeight = wrld.dims.height;
@@ -18,11 +17,7 @@ class Food extends Entity {
     }
     //  methods
     run() {
-        this.update();
         this.render();
-    }
-
-    update() {
     }
 
     render() {

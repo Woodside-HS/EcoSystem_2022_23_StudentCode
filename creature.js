@@ -1,14 +1,12 @@
-class Creature extends Entity {
-   constructor(loc, vel, sz, wrld) {
-      super(loc, vel, sz, wrld)
-      //mover properties
+class Creature {//extends Entity {
+   constructor(loc, vel, scl, ctx, wrld) {
       this.loc = loc;
       this.vel = vel;
       this.acc = new JSVector(0, 0);
       this.clr = this.getRandomColor();
-      this.size = sz;
+      this.scl = scl;
       this.maxSpeed = .1;
-      this.ctx = wrld.ctxMain;
+      this.ctx = ctx;
       this.wWidth = wrld.dims.width;
       this.wHeight = wrld.dims.height;
       this.statBlock = {//  status block 
@@ -21,7 +19,7 @@ class Creature extends Entity {
          pregnant: false,
          numOffspring:1,
          predRank: 5, //  predatory rank 0-10
-         herbavor: false,
+         herbivore: false,
          maxSpeed: 1,
          scentValue: 100,
          sightValue: 100,
@@ -51,10 +49,20 @@ class Creature extends Entity {
    render() {
       //  render balls in world
       let ctx = this.ctx;
+      ctx.save();
+      ctx.translate(this.loc.x, this.loc.y);
+      ctx.rotate(this.vel.getDirection() ); //offset 90 degrees
       ctx.beginPath();
+      ctx.strokeStyle = this.clr;
       ctx.fillStyle = this.clr;
-      ctx.arc(this.loc.x, this.loc.y, this.size, 0, 2 * Math.PI, false);
+      ctx.moveTo(this.scl, 0);
+      ctx.lineTo(-this.scl*1.3, -this.scl);
+      ctx.lineTo(-this.scl-5, 0);
+      ctx.lineTo(-this.scl*1.3, this.scl);
+      ctx.closePath();
+      ctx.stroke();
       ctx.fill();
+      ctx.restore();
       //  render balls in mini map
    }
 
